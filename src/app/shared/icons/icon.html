@@ -1,0 +1,8 @@
+/**
+ * Icon Component Base Template
+ *
+ * Renders SVG content with proper sizing and styling.
+ */
+<svg [attr.aria-label]="ariaLabel()" [class]="'app-icon--' + size()" [style.color]="color()">
+  <ng-content></ng-content>
+</svg>

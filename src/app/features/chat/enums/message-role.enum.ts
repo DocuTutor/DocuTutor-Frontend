@@ -1,0 +1,8 @@
+/**
+ * Message Role Enum
+ */
+export enum MessageRole {
+  USER = 'user',
+  ASSISTANT = 'assistant',
+  SYSTEM = 'system',
+}

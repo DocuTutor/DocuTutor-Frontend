@@ -1,0 +1,71 @@
+<!-- Dashboard Sidebar Navigation -->
+<aside class="sidebar" [class.collapsed]="isCollapsed()">
+  <!-- Sidebar Header -->
+  <div class="sidebar-header">
+    <h2 class="sidebar-title">DocuTutor</h2>
+    <button (click)="toggleCollapse()" class="collapse-btn" aria-label="Toggle sidebar">
+      ☰
+    </button>
+  </div>
+
+  <!-- Sidebar Navigation Menu -->
+  <nav class="sidebar-nav">
+    <!-- Main Navigation -->
+    <div class="nav-section">
+      <h3 class="nav-section-title">Main</h3>
+      <ul class="nav-menu">
+        <li>
+          <a routerLink="/dashboard" routerLinkActive="active">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/documents" routerLinkActive="active">
+            <span class="nav-icon">📄</span>
+            <span class="nav-label">Documents</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/chat" routerLinkActive="active">
+            <span class="nav-icon">💬</span>
+            <span class="nav-label">Chat</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Settings Section -->
+    <div class="nav-section">
+      <h3 class="nav-section-title">Settings</h3>
+      <ul class="nav-menu">
+        <li>
+          <a routerLink="/settings/profile" routerLinkActive="active">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">Profile</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/settings/account" routerLinkActive="active">
+            <span class="nav-icon">⚙️</span>
+            <span class="nav-label">Settings</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/help" routerLinkActive="active">
+            <span class="nav-icon">❓</span>
+            <span class="nav-label">Help</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Sidebar Footer -->
+  <div class="sidebar-footer">
+    <button class="logout-btn">
+      <span class="nav-icon">🚪</span>
+      <span class="nav-label">Logout</span>
+    </button>
+  </div>
+</aside>

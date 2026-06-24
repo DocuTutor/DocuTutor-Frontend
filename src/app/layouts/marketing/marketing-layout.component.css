@@ -1,0 +1,17 @@
+.marketing-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.marketing-content {
+  flex: 1;
+  width: 100%;
+}
+
+/* Mobile-first responsive design */
+@media (max-width: 768px) {
+  .marketing-layout {
+    /* Adjust for mobile */
+  }
+}

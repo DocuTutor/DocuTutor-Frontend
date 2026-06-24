@@ -1,0 +1,25 @@
+<!-- Authentication Layout Shell -->
+<div class="auth-layout">
+  <!-- Optional Header -->
+  <app-auth-header></app-auth-header>
+
+  <!-- Main Auth Content Area -->
+  <div class="auth-container">
+    <!-- Optional Sidebar with Benefits -->
+    <aside class="auth-sidebar">
+      <div class="sidebar-content">
+        <h2>Why DocuTutor?</h2>
+        <ul>
+          <li>Secure document storage</li>
+          <li>AI-powered insights</li>
+          <li>Real-time collaboration</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Auth Form (Login/Register) -->
+    <main class="auth-form">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
