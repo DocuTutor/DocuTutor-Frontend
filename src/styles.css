@@ -1,3 +1,229 @@
-/* You can add global styles to this file, and also import other style files */
+
 
 @import 'tailwindcss';
+@source "./app";
+/* @import "tw-animate-css"; */
+@import "@fontsource-variable/inter";
+
+@import "@fontsource/plus-jakarta-sans/400.css";
+@import "@fontsource/plus-jakarta-sans/500.css";
+@import "@fontsource/plus-jakarta-sans/600.css";
+@import "@fontsource/plus-jakarta-sans/700.css";
+@import "@fontsource/plus-jakarta-sans/800.css";
+
+@import "@fontsource/space-grotesk/500.css";
+@import "@fontsource/space-grotesk/600.css";
+@import "@fontsource/space-grotesk/700.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Plus Jakarta Sans", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-body:"Inter Variable", sans-serif;
+  --font-heading:"Plus Jakarta Sans", sans-serif;
+
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 12px);
+  --radius-3xl: calc(var(--radius) + 20px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-pale: var(--brand-pale);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --shadow-soft: 0 1px 2px 0 rgb(9 99 126 / 0.04), 0 4px 16px -2px rgb(9 99 126 / 0.06);
+  --shadow-glow: 0 20px 60px -20px rgb(8 131 149 / 0.35);
+  --shadow-card: 0 1px 0 0 rgb(9 99 126 / 0.04), 0 8px 32px -12px rgb(9 99 126 / 0.10);
+}
+
+:root {
+  --radius: 0.875rem;
+
+  /* Brand palette — #09637E #088395 #7AB2B2 #EBF4F6 */
+  --brand-deep: oklch(0.48 0.075 220);   /* #09637E */
+  --brand: oklch(0.58 0.085 210);        /* #088395 */
+  --brand-soft: oklch(0.78 0.045 195);   /* #7AB2B2 */
+  --brand-pale: oklch(0.965 0.012 215);  /* #EBF4F6 */
+
+  --background: oklch(0.995 0.003 215);
+  --foreground: oklch(0.22 0.035 230);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.035 230);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.035 230);
+
+  --primary: oklch(0.48 0.075 220);
+  --primary-foreground: oklch(0.985 0.003 215);
+
+  --secondary: oklch(0.965 0.012 215);
+  --secondary-foreground: oklch(0.30 0.04 225);
+
+  --muted: oklch(0.965 0.012 215);
+  --muted-foreground: oklch(0.52 0.025 225);
+
+  --accent: oklch(0.78 0.045 195);
+  --accent-foreground: oklch(0.22 0.035 230);
+
+  --warning: oklch(0.78 0.15 75);       /* warm amber accent */
+  --warning-foreground: oklch(0.25 0.05 70);
+
+  --success: oklch(0.65 0.14 160);
+  --success-foreground: oklch(0.99 0 0);
+
+  --destructive: oklch(0.60 0.22 27);
+  --destructive-foreground: oklch(0.99 0 0);
+
+  --border: oklch(0.92 0.015 215);
+  --input: oklch(0.92 0.015 215);
+  --ring: oklch(0.58 0.085 210);
+
+  --sidebar: oklch(0.985 0.008 215);
+  --sidebar-foreground: oklch(0.22 0.035 230);
+  --sidebar-primary: oklch(0.48 0.075 220);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.95 0.018 215);
+  --sidebar-accent-foreground: oklch(0.30 0.04 225);
+  --sidebar-border: oklch(0.92 0.015 215);
+  --sidebar-ring: oklch(0.58 0.085 210);
+
+  --chart-1: oklch(0.48 0.075 220);
+  --chart-2: oklch(0.58 0.085 210);
+  --chart-3: oklch(0.78 0.045 195);
+  --chart-4: oklch(0.78 0.15 75);
+  --chart-5: oklch(0.65 0.14 160);
+
+  --font-body:"Inter Variable", sans-serif;
+
+  --font-heading:"Plus Jakarta Sans", sans-serif;
+
+  --font-display:"Space Grotesk", sans-serif;
+}
+
+.dark {
+  --background: oklch(0.18 0.03 230);
+  --foreground: oklch(0.97 0.005 215);
+  --card: oklch(0.22 0.035 230);
+  --card-foreground: oklch(0.97 0.005 215);
+  --popover: oklch(0.22 0.035 230);
+  --popover-foreground: oklch(0.97 0.005 215);
+  --primary: oklch(0.78 0.045 195);
+  --primary-foreground: oklch(0.18 0.03 230);
+  --secondary: oklch(0.28 0.04 225);
+  --secondary-foreground: oklch(0.97 0.005 215);
+  --muted: oklch(0.28 0.04 225);
+  --muted-foreground: oklch(0.70 0.02 215);
+  --accent: oklch(0.48 0.075 220);
+  --accent-foreground: oklch(0.97 0.005 215);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.78 0.045 195);
+  --sidebar: oklch(0.22 0.035 230);
+  --sidebar-foreground: oklch(0.97 0.005 215);
+  --sidebar-primary: oklch(0.78 0.045 195);
+  --sidebar-primary-foreground: oklch(0.18 0.03 230);
+  --sidebar-accent: oklch(0.28 0.04 225);
+  --sidebar-accent-foreground: oklch(0.97 0.005 215);
+  --sidebar-border: oklch(1 0 0 / 10%);
+
+  --font-body:"Inter Variable", sans-serif;
+  --font-heading:"Plus Jakarta Sans", sans-serif;  
+  --font-display:"Space Grotesk", sans-serif;
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body { font-family: var(--font-sans); }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+  ::selection { background: color-mix(in oklab, var(--brand) 30%, transparent); }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--brand-deep) 8%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--brand-deep) 8%, transparent) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .bg-dot {
+    background-image: radial-gradient(color-mix(in oklab, var(--brand-deep) 18%, transparent) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  .gradient-brand {
+    background-image: linear-gradient(135deg, var(--brand-deep) 0%, var(--brand) 50%, var(--brand-soft) 100%);
+  }
+  .gradient-soft {
+    background-image: linear-gradient(180deg, var(--brand-pale) 0%, transparent 100%);
+  }
+  .text-gradient {
+    background: linear-gradient(120deg, var(--brand-deep), var(--brand) 60%, color-mix(in oklab, var(--brand-soft) 80%, var(--brand)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .underline-squiggle {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8'><path d='M0 4 Q 15 0 30 4 T 60 4 T 90 4 T 120 4' fill='none' stroke='%23F4A93C' stroke-width='3' stroke-linecap='round'/></svg>");
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 8px;
+    padding-bottom: 8px;
+  }
+  .shimmer {
+    background: linear-gradient(90deg,
+      color-mix(in oklab, var(--muted) 60%, transparent) 0%,
+      color-mix(in oklab, var(--muted) 100%, transparent) 50%,
+      color-mix(in oklab, var(--muted) 60%, transparent) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s linear infinite;
+  }
+  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+  .float-slow { animation: float 7s ease-in-out infinite; }
+  .float-medium { animation: float 5s ease-in-out infinite; }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+  .fade-up { animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  @keyframes fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+}
+

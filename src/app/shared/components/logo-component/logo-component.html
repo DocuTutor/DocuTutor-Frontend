@@ -1,0 +1,21 @@
+<a
+  [routerLink]="to()"
+  class="group inline-flex items-center gap-2"
+  aria-label="DocuTutor home"
+>
+  <span class="relative grid h-9 w-9 place-items-center rounded-xl gradient-brand shadow-soft transition-transform duration-200 group-hover:scale-105">
+    <svg viewBox="0 0 24 24" class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M4 5a2 2 0 0 1 2-2h8l6 6v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" />
+      <path d="M14 3v6h6" />
+      <circle cx="12" cy="14" r="2.2" fill="currentColor" stroke="none" />
+    </svg>
+
+    <span class="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-[oklch(0.78_0.15_75)] ring-2 ring-background" aria-hidden="true"></span>
+  </span>
+
+  @if (!compact()) {
+    <span class="font-display text-xl font-bold tracking-tight" [class.text-white]="invert()" [class.text-foreground]="!invert()">
+      Docu<span class="text-brand">Tutor</span>
+    </span>
+  }
+</a>

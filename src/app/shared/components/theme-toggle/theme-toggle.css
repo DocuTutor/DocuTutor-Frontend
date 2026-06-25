@@ -1,0 +1,65 @@
+:host {
+  display: inline-flex;
+}
+
+.theme-toggle {
+  --toggle-size: 2.5rem;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--toggle-size);
+  block-size: var(--toggle-size);
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  background: color-mix(in oklab, var(--color-card) 88%, transparent);
+  color: var(--color-foreground);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.theme-toggle:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in oklab, var(--color-ring) 30%, var(--color-border));
+  background: color-mix(in oklab, var(--color-secondary) 70%, white 30%);
+  box-shadow: var(--shadow-card);
+  color: var(--color-primary);
+}
+
+.theme-toggle:active {
+  transform: translateY(0);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 3px;
+}
+
+.theme-toggle__icon {
+  inline-size: 1rem;
+  block-size: 1rem;
+  flex-shrink: 0;
+  transition:
+    transform 0.25s ease,
+    opacity 0.2s ease;
+}
+
+.theme-toggle:hover .theme-toggle__icon {
+  transform: rotate(8deg) scale(1.04);
+}
+
+:host-context(.dark) .theme-toggle {
+  background: color-mix(in oklab, var(--color-card) 94%, transparent);
+  color: var(--color-foreground);
+  border-color: var(--color-border);
+}
+
+:host-context(.dark) .theme-toggle:hover {
+  background: color-mix(in oklab, var(--color-secondary) 85%, var(--color-card));
+}
