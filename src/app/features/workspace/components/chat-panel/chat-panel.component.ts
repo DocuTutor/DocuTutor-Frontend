@@ -72,5 +72,5 @@ export class ChatPanelComponent  {
       this.thinking.set(false);
     }, 1200);
   }
-
 }
+

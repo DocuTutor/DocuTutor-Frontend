@@ -20,9 +20,9 @@ interface NavItem {
 })
 export class DashboardSidebarComponent {
 readonly nav: NavItem[] = [
-    { to: '/app', label: 'Dashboard', icon: '🏠', exact: true },
-    { to: '/app/upload', label: 'Upload', icon: '📤' },
-    { to: '/app/documents/neural-networks', label: 'Active document', icon: '📖' },
-    { to: '/app/settings', label: 'Settings', icon: '⚙️' },
+    { to: '/dashboard', label: 'Dashboard', icon: '🏠', exact: true },
+    { to: '/dashboard/upload', label: 'Upload', icon: '📤' },
+    { to: '/dashboard/documents/neural-networks', label: 'Active document', icon: '📖' },
+    { to: '/dashboard/settings', label: 'Settings', icon: '⚙️' },
   ];
 }
