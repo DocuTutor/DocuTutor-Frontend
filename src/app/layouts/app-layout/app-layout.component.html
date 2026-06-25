@@ -1,0 +1,284 @@
+<div class="min-h-screen bg-background">
+      <app-navbar />
+
+      <!-- HERO -->
+      <section class="relative overflow-hidden">
+        <div class="absolute inset-0 -z-10 bg-grid opacity-40 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_70%)]"></div>
+        <div class="absolute -top-32 right-1/4 -z-10 h-96 w-96 rounded-full bg-brand-soft/30 blur-3xl"></div>
+        <div class="absolute top-40 -left-20 -z-10 h-80 w-80 rounded-full bg-brand/15 blur-3xl"></div>
+
+        <div class="mx-auto grid max-w-7xl gap-12 px-4 pt-16 pb-24 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8 lg:pt-24 lg:pb-32">
+          <div class="lg:col-span-7 fade-up">
+            <div class="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/5 px-3 py-1 text-xs font-semibold text-brand-deep">
+              <span class="grid h-5 w-5 place-items-center rounded-full bg-warning text-warning-foreground">
+                <svg viewBox="0 0 24 24" class="h-3 w-3" fill="currentColor"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg>
+              </span>
+              New · RAG + agent-powered tutor
+            </div>
+
+            <h1 class="mt-5 font-display text-5xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+              Study any document <br />
+              <span class="relative inline-block"><span class="underline-squiggle">like you have</span></span>
+              <span class="text-gradient">a private tutor.</span>
+            </h1>
+
+            <p class="mt-6 max-w-xl text-lg text-muted-foreground">
+              Upload a PDF or DOCX. DocuTutor reads it, then lets you <strong class="text-foreground">chat</strong>,
+              <strong class="text-foreground">quiz</strong> yourself, and get
+              <strong class="text-foreground">structured summaries</strong> — all in one calm, beautifully simple workspace.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a routerLink="/signup" class="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-sm font-semibold text-background shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-glow">
+                Start studying free
+                <svg class="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </a>
+              <a href="#how" class="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted">
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                Watch demo
+              </a>
+            </div>
+
+            <div class="mt-10 flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
+              <div class="flex -space-x-2">
+                @for (a of avatars; track a) {
+                  <img [src]="a" alt="" class="h-9 w-9 rounded-full border-2 border-background object-cover" />
+                }
+              </div>
+              <div>
+                <div class="flex items-center gap-1 text-warning">★★★★★</div>
+                <div class="mt-0.5 text-xs">Loved by <strong class="text-foreground">28,400+</strong> students worldwide</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative lg:col-span-5">
+            <div class="relative mx-auto max-w-md">
+              <div class="absolute -inset-6 -z-10 rounded-[3rem] gradient-brand opacity-10 blur-2xl"></div>
+              <div class="relative overflow-hidden rounded-[2.5rem] border border-brand/15 bg-brand-pale shadow-card">
+                <img src="hero-student.png" alt="DocuTutor study assistant" class="h-auto w-full" />
+              </div>
+              <div class="absolute -left-8 top-12 hidden rounded-2xl border border-border bg-card p-3 shadow-card float-slow sm:block">
+                <div class="flex items-center gap-2">
+                  <span class="grid h-8 w-8 place-items-center rounded-lg bg-success/15 text-success">✓</span>
+                  <div class="text-xs">
+                    <div class="font-semibold text-foreground">Quiz score</div>
+                    <div class="text-muted-foreground">8 / 10 — nice!</div>
+                  </div>
+                </div>
+              </div>
+              <div class="absolute -right-6 bottom-16 hidden rounded-2xl border border-border bg-card p-3 shadow-card float-medium sm:block">
+                <div class="flex items-center gap-2">
+                  <span class="grid h-8 w-8 place-items-center rounded-lg bg-brand/15 text-brand-deep">
+                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg>
+                  </span>
+                  <div class="text-xs">
+                    <div class="font-semibold text-foreground">DocuTutor</div>
+                    <div class="text-muted-foreground">Cited p. 12 & p. 14</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-y border-border/60 bg-brand-pale/60">
+          <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-12 gap-y-3 px-4 py-6 text-xs font-semibold tracking-widest text-muted-foreground sm:px-6 lg:px-8">
+            <span class="text-foreground/40">USED BY STUDENTS AT</span>
+            @for (n of unis; track n) { <span>{{ n }}</span> }
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section id="how" class="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+        <div class="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+          <div class="max-w-xl">
+            <div class="text-sm font-semibold uppercase tracking-wider text-brand">How it works</div>
+            <h2 class="mt-2 font-display text-4xl font-bold leading-tight text-foreground sm:text-5xl">
+              From a PDF to a <span class="underline-squiggle">private tutor</span> in 30 seconds.
+            </h2>
+          </div>
+          <p class="max-w-md text-muted-foreground">No setup, no prompts to learn. Drop a file, and DocuTutor handles the chunking, embeddings, and tutoring for you.</p>
+        </div>
+
+        <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          @for (s of steps; track s.n) {
+            <div class="group relative rounded-3xl border border-border bg-card p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card">
+              <div class="flex items-start justify-between">
+                <span class="text-3xl">{{ s.i }}</span>
+                <span class="font-display text-sm font-bold text-brand-soft">{{ s.n }}</span>
+              </div>
+              <h3 class="mt-6 text-lg font-semibold text-foreground">{{ s.t }}</h3>
+              <p class="mt-2 text-sm text-muted-foreground">{{ s.d }}</p>
+            </div>
+          }
+        </div>
+      </section>
+
+      <!-- CORE FEATURES -->
+      <section id="features" class="bg-brand-pale/50 py-24">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="mx-auto max-w-2xl text-center">
+            <div class="text-sm font-semibold uppercase tracking-wider text-brand">Three tools. One document.</div>
+            <h2 class="mt-2 font-display text-4xl font-bold leading-tight text-foreground sm:text-5xl">
+              The whole study loop, in <span class="text-gradient">one workspace</span>.
+            </h2>
+            <p class="mt-4 text-muted-foreground">Single-document focus on purpose — so the AI always has the right context, and you always know where you are.</p>
+          </div>
+
+          <div class="mt-14 grid gap-6 lg:grid-cols-3">
+            @for (f of features; track f.tag; let i = $index) {
+              <article class="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-soft transition-all hover:-translate-y-1.5 hover:shadow-card">
+                <div class="relative h-56 overflow-hidden bg-gradient-to-br from-brand-pale to-brand-soft/30">
+                  <img [src]="f.img" alt="" loading="lazy" class="absolute inset-0 mx-auto h-full w-full object-contain p-6 transition-transform duration-500 group-hover:scale-105" />
+                  <span class="absolute left-4 top-4 rounded-full bg-foreground/90 px-3 py-1 text-xs font-semibold text-background backdrop-blur">
+                    {{ pad(i + 1) }} · {{ f.tag }}
+                  </span>
+                </div>
+                <div class="flex flex-1 flex-col p-6">
+                  <h3 class="font-display text-xl font-semibold text-foreground">{{ f.title }}</h3>
+                  <p class="mt-2 text-sm text-muted-foreground">{{ f.desc }}</p>
+                  <ul class="mt-5 space-y-2">
+                    @for (b of f.bullets; track b) {
+                      <li class="flex items-center gap-2 text-sm text-foreground/80">
+                        <span class="grid h-5 w-5 place-items-center rounded-full bg-success/15 text-success">
+                          <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </span>
+                        {{ b }}
+                      </li>
+                    }
+                  </ul>
+                </div>
+              </article>
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- WHY STUDENTS LOVE IT -->
+      <section class="bg-foreground py-24 text-background">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="mx-auto max-w-2xl text-center">
+            <div class="text-sm font-semibold uppercase tracking-wider text-brand-soft">Why students love it</div>
+            <h2 class="mt-2 font-display text-4xl font-bold leading-tight sm:text-5xl">
+              Less re-reading. <span class="text-brand-soft">More remembering.</span>
+            </h2>
+          </div>
+          <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            @for (s of stats; track s.k) {
+              <div class="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur transition-colors hover:bg-white/10">
+                <div class="font-display text-4xl font-bold text-brand-soft">{{ s.k }}</div>
+                <div class="mt-2 font-semibold">{{ s.l }}</div>
+                <div class="mt-1 text-sm text-background/70">{{ s.d }}</div>
+              </div>
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <div class="text-sm font-semibold uppercase tracking-wider text-brand">Loved by students</div>
+          <h2 class="mt-2 font-display text-4xl font-bold leading-tight text-foreground sm:text-5xl">What our lovely <span class="underline-squiggle">learners</span> say</h2>
+        </div>
+        <div class="mt-12 grid gap-6 md:grid-cols-3">
+          @for (t of testimonials; track t.name) {
+            <figure class="rounded-3xl border border-border bg-card p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card">
+              <div class="flex items-center gap-1 text-warning">★★★★★</div>
+              <blockquote class="mt-4 text-base leading-relaxed text-foreground">"{{ t.q }}"</blockquote>
+              <figcaption class="mt-6 flex items-center gap-3">
+                <img [src]="t.img" alt="" loading="lazy" class="h-11 w-11 rounded-full object-cover" />
+                <div>
+                  <div class="font-semibold text-foreground">{{ t.name }}</div>
+                  <div class="text-xs text-muted-foreground">{{ t.role }}</div>
+                </div>
+              </figcaption>
+            </figure>
+          }
+        </div>
+      </section>
+
+      <!-- PRICING PREVIEW -->
+      <section id="pricing" class="bg-brand-pale/50 py-24">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col items-end justify-between gap-6 md:flex-row">
+            <div class="max-w-xl">
+              <div class="text-sm font-semibold uppercase tracking-wider text-brand">Pricing</div>
+              <h2 class="mt-2 font-display text-4xl font-bold leading-tight text-foreground sm:text-5xl">
+                Built for students. <br />Priced like a coffee.
+              </h2>
+            </div>
+            <a routerLink="/pricing" class="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-deep underline-offset-4 hover:underline">See full pricing →</a>
+          </div>
+
+          <div class="mt-12 grid gap-6 md:grid-cols-3">
+            @for (p of miniPricing; track p.tier) {
+              <div class="relative flex flex-col rounded-3xl border p-7 transition-all hover:-translate-y-1"
+                   [class]="p.highlight ? 'border-brand bg-foreground text-background shadow-glow' : 'border-border bg-card text-foreground shadow-soft'">
+                @if (p.highlight) {
+                  <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-warning px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-warning-foreground">Most popular</span>
+                }
+                <div class="text-sm font-semibold uppercase tracking-wider opacity-70">{{ p.tier }}</div>
+                <div class="mt-3 flex items-baseline gap-1">
+                  <span class="font-display text-5xl font-bold">{{ p.price }}</span>
+                  <span class="text-sm opacity-70">/ month</span>
+                </div>
+                <p class="mt-2 text-sm" [class]="p.highlight ? 'text-background/70' : 'text-muted-foreground'">{{ p.desc }}</p>
+                <ul class="mt-6 space-y-2 text-sm">
+                  @for (i of p.items; track i) {
+                    <li class="flex items-center gap-2">
+                      <span class="grid h-5 w-5 place-items-center rounded-full" [class]="p.highlight ? 'bg-brand-soft/30 text-brand-soft' : 'bg-success/15 text-success'">
+                        <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                      </span>
+                      {{ i }}
+                    </li>
+                  }
+                </ul>
+                <a routerLink="/signup" class="mt-7 inline-flex justify-center rounded-full px-4 py-2.5 text-sm font-semibold transition-all hover:-translate-y-0.5"
+                   [class]="p.highlight ? 'bg-warning text-warning-foreground' : 'bg-foreground text-background'">Choose {{ p.tier }}</a>
+              </div>
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="mx-auto max-w-4xl px-4 py-24 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="text-sm font-semibold uppercase tracking-wider text-brand">FAQ</div>
+          <h2 class="mt-2 font-display text-4xl font-bold leading-tight text-foreground sm:text-5xl">Things students ask us</h2>
+        </div>
+        <div class="mt-10 divide-y divide-border rounded-3xl border border-border bg-card">
+          @for (qa of faq; track qa[0]) {
+            <details class="group p-6">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-foreground">
+                {{ qa[0] }}
+                <span class="grid h-7 w-7 place-items-center rounded-full bg-brand/10 text-brand-deep transition-transform group-open:rotate-45">
+                  <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+              </summary>
+              <p class="mt-3 text-sm text-muted-foreground">{{ qa[1] }}</p>
+            </details>
+          }
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
+        <div class="relative overflow-hidden rounded-[2.5rem] gradient-brand px-8 py-16 text-center text-white shadow-glow sm:px-16">
+          <div class="absolute inset-0 bg-dot opacity-20"></div>
+          <div class="relative">
+            <h2 class="mx-auto max-w-2xl font-display text-4xl font-bold leading-tight sm:text-5xl">Your next study session deserves a tutor.</h2>
+            <p class="mx-auto mt-4 max-w-xl text-white/85">Upload your first document in under 60 seconds. No credit card required.</p>
+            <div class="mt-8 flex flex-wrap justify-center gap-3">
+              <a routerLink="/signup" class="rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-brand-deep shadow-soft transition-all hover:-translate-y-0.5">Start studying free</a>
+              <a routerLink="/pricing" class="rounded-full border border-white/30 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10">View pricing</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <app-footer/>
+    </div>

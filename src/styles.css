@@ -139,6 +139,7 @@
 .dark {
   --background: oklch(0.18 0.03 230);
   --foreground: oklch(0.97 0.005 215);
+
   --card: oklch(0.22 0.035 230);
   --card-foreground: oklch(0.97 0.005 215);
   --popover: oklch(0.22 0.035 230);
@@ -148,7 +149,9 @@
   --secondary: oklch(0.28 0.04 225);
   --secondary-foreground: oklch(0.97 0.005 215);
   --muted: oklch(0.28 0.04 225);
-  --muted-foreground: oklch(0.70 0.02 215);
+  /* --muted-foreground: oklch(0.70 0.02 215); */
+  --muted-foreground:  oklch(0.97 0.005 215);
+
   --accent: oklch(0.48 0.075 220);
   --accent-foreground: oklch(0.97 0.005 215);
   --border: oklch(1 0 0 / 10%);
@@ -198,12 +201,22 @@
   .gradient-soft {
     background-image: linear-gradient(180deg, var(--brand-pale) 0%, transparent 100%);
   }
-  .text-gradient {
+  /* .text-gradient {
     background: linear-gradient(120deg, var(--brand-deep), var(--brand) 60%, color-mix(in oklab, var(--brand-soft) 80%, var(--brand)));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-  }
+  } */
+   .text-gradient {
+  display: inline-block;
+  background-image: linear-gradient(120deg,var(--brand-deep) 0%,var(--brand) 60%,color-mix(in oklab, var(--brand-soft) 80%, var(--brand)) 100%);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
   .underline-squiggle {
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8'><path d='M0 4 Q 15 0 30 4 T 60 4 T 90 4 T 120 4' fill='none' stroke='%23F4A93C' stroke-width='3' stroke-linecap='round'/></svg>");
     background-repeat: no-repeat;

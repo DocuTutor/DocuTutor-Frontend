@@ -1,0 +1,25 @@
+<div class="flex h-screen flex-col">
+  <app-workspace-header [doc]="doc()" />
+
+  <div class="border-b border-border bg-card px-6 py-4 lg:px-10">
+    <app-workspace-tabs
+      [tabs]="tabs"
+      [activeTab]="activeTab()"
+      (tabChange)="setTab($event)"
+    />
+  </div>
+
+  <div class="flex-1 min-h-0 overflow-hidden">
+    @switch (activeTab()) {
+      @case ('chat') {
+        <app-chat-panel [doc]="doc()" />
+      }
+      @case ('quiz') {
+        <app-quiz-panel [questions]="quiz" />
+      }
+      @case ('summary') {
+        <app-summary-panel [summary]="summary" />
+      }
+    }
+  </div>
+</div>

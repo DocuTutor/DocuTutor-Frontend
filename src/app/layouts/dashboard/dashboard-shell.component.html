@@ -1,19 +1,9 @@
+<div class="min-h-screen bg-brand-pale/30">
+  <div class="mx-auto flex max-w-[1500px]">
+    <app-dashboard-sidebar />
 
-<div class="dashboard-shell">
-  <!-- Sidebar Navigation -->
-  <!-- <app-dashboard-sidebar></app-dashboard-sidebar> -->
-
-  <!-- Main Content Area -->
-  <div class="dashboard-main">
-    <!-- Top Navigation Bar -->
-    <!-- <app-dashboard-topbar></app-dashboard-topbar> -->
-
-    <!-- Breadcrumb Navigation -->
-    <!-- <app-breadcrumb></app-breadcrumb> -->
-
-    <!-- Page Content -->
-    <main class="dashboard-content">
-      <router-outlet></router-outlet>
+    <main class="min-w-0 flex-1">
+      <router-outlet />
     </main>
   </div>
 </div>
