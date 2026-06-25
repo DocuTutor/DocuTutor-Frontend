@@ -1,0 +1,103 @@
+<div class="px-6 py-8 lg:px-10 lg:py-10">
+      <h1 class="font-display text-3xl font-bold text-foreground sm:text-4xl">Settings</h1>
+      <p class="mt-2 text-muted-foreground">Manage your account, plan, and study preferences.</p>
+
+      <div class="mt-8 grid gap-6 lg:grid-cols-[220px,1fr]">
+        <nav class="space-y-1">
+          @for (s of sections; track s.id) {
+            <button (click)="tab.set(s.id)"
+              class="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors"
+              [class]="tab() === s.id ? 'bg-foreground text-background shadow-soft' : 'text-foreground hover:bg-card'">
+              <span>{{ s.icon }}</span> {{ s.label }}
+            </button>
+          }
+        </nav>
+
+        <div class="space-y-6">
+          @if (tab() === "profile") {
+            <section class="rounded-3xl border border-border bg-card p-6 shadow-soft">
+              <div class="font-display text-xl font-semibold text-foreground">Profile</div>
+              <p class="mt-1 text-sm text-muted-foreground">How you appear inside DocuTutor.</p>
+              <div class="mt-6 space-y-4">
+                <div class="flex items-center gap-4">
+                  <span class="grid h-16 w-16 place-items-center rounded-full bg-brand-soft font-bold text-brand-deep text-xl">MR</span>
+                  <button class="rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold hover:bg-muted">Change avatar</button>
+                </div>
+                <div class="grid gap-4 sm:grid-cols-2">
+                  @for (f of fields; track f.label) {
+                    <label class="block">
+                      <span class="text-sm font-medium text-foreground">{{ f.label }}</span>
+                      <input [value]="f.value" class="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-2.5 text-sm outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/15" />
+                    </label>
+                  }
+                </div>
+                <div class="flex justify-end">
+                  <button class="rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background hover:-translate-y-0.5 transition-all">Save changes</button>
+                </div>
+              </div>
+            </section>
+          }
+
+          @if (tab() === "billing") {
+            <section class="rounded-3xl border border-border bg-card p-6 shadow-soft">
+              <div class="font-display text-xl font-semibold text-foreground">Plan & billing</div>
+              <p class="mt-1 text-sm text-muted-foreground">Manage your subscription.</p>
+              <div class="mt-6 space-y-4">
+                <div class="rounded-2xl bg-gradient-to-br from-brand-deep to-brand p-6 text-white">
+                  <div class="text-xs uppercase tracking-wider text-white/70">Current plan</div>
+                  <div class="mt-1 font-display text-2xl font-bold">Free</div>
+                  <p class="mt-1 text-sm text-white/80">2 of 3 monthly documents used.</p>
+                  <button class="mt-4 rounded-full bg-warning px-4 py-2 text-xs font-bold text-warning-foreground">Upgrade to Pro</button>
+                </div>
+                <div class="rounded-2xl border border-border p-4">
+                  <div class="text-sm font-semibold text-foreground">Payment method</div>
+                  <div class="text-xs text-muted-foreground">No card on file yet.</div>
+                </div>
+              </div>
+            </section>
+          }
+
+          @if (tab() === "preferences") {
+            <section class="rounded-3xl border border-border bg-card p-6 shadow-soft">
+              <div class="font-display text-xl font-semibold text-foreground">Preferences</div>
+              <p class="mt-1 text-sm text-muted-foreground">Tailor your study experience.</p>
+              <div class="mt-6 space-y-4">
+                @for (t of prefs; track t.label) {
+                  <button (click)="t.on = !t.on" class="flex w-full items-center justify-between rounded-xl px-1 py-2 text-left text-sm hover:bg-muted/50">
+                    <span class="font-medium text-foreground">{{ t.label }}</span>
+                    <span class="relative h-6 w-11 rounded-full transition-colors" [class]="t.on ? 'bg-brand-deep' : 'bg-muted'">
+                      <span class="absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-all" [class]="t.on ? 'left-5' : 'left-0.5'"></span>
+                    </span>
+                  </button>
+                }
+                <div class="border-t border-border pt-4">
+                  <label class="text-sm font-medium text-foreground">Default quiz difficulty</label>
+                  <div class="mt-2 inline-flex rounded-full border border-border bg-muted p-1">
+                    @for (d of difficulties; track d; let i = $index) {
+                      <button class="rounded-full px-4 py-1.5 text-xs font-semibold" [class]="i === 1 ? 'bg-foreground text-background' : 'text-muted-foreground'">{{ d }}</button>
+                    }
+                  </div>
+                </div>
+              </div>
+            </section>
+          }
+
+          @if (tab() === "notifications") {
+            <section class="rounded-3xl border border-border bg-card p-6 shadow-soft">
+              <div class="font-display text-xl font-semibold text-foreground">Notifications</div>
+              <p class="mt-1 text-sm text-muted-foreground">When should we ping you?</p>
+              <div class="mt-6 space-y-4">
+                @for (t of notifs; track t.label) {
+                  <button (click)="t.on = !t.on" class="flex w-full items-center justify-between rounded-xl px-1 py-2 text-left text-sm hover:bg-muted/50">
+                    <span class="font-medium text-foreground">{{ t.label }}</span>
+                    <span class="relative h-6 w-11 rounded-full transition-colors" [class]="t.on ? 'bg-brand-deep' : 'bg-muted'">
+                      <span class="absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-all" [class]="t.on ? 'left-5' : 'left-0.5'"></span>
+                    </span>
+                  </button>
+                }
+              </div>
+            </section>
+          }
+        </div>
+      </div>
+    </div>

@@ -1,28 +1,18 @@
-<!-- Marketing Navbar Shell -->
-<nav class="navbar">
-  <!-- Logo / Brand -->
-  <div class="navbar-brand">
-    <!-- Insert logo here -->
-  </div>
-
-  <!-- Navigation Links -->
-  <ul class="navbar-links">
-    <li><a href="#features">Features</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#docs">Documentation</a></li>
-    <li><a href="#blog">Blog</a></li>
-  </ul>
-
-  <!-- Right Actions -->
-  <div class="navbar-actions">
-    <button class="btn-secondary">Sign In</button>
-    <button class="btn-primary">Sign Up</button>
-  </div>
-
-  <!-- Mobile Hamburger Menu -->
-  <button class="hamburger-menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-</nav>
+    <header class="sticky top-0 z-40 border-b border-border/60 bg-background/75 backdrop-blur-xl">
+      <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <app-logo />
+        <nav class="hidden items-center gap-8 md:flex">
+          @for (l of links; track l.href) {
+            <a [href]="l.href" class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">{{ l.label }}</a>
+          }
+        </nav>
+        <div class="flex items-center gap-2">
+          <app-theme-toggle />
+          <a routerLink="/login" class="hidden rounded-full px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted sm:inline-flex">Log in</a>
+          <a routerLink="/signup" class="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background shadow-soft transition-all hover:shadow-glow hover:-translate-y-0.5">
+            Get started
+            <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </header>
