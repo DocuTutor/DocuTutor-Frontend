@@ -1,18 +1,32 @@
-    <header class="sticky top-0 z-40 border-b border-border/60 bg-background/75 backdrop-blur-xl">
-      <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <app-logo />
-        <nav class="hidden items-center gap-8 md:flex">
+<header class="sticky top-0 z-40 border-b border-border/60 bg-background/75 backdrop-blur-xl">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <app-logo />
+    <!-- <nav class="hidden items-center gap-8 md:flex">
           @for (l of links; track l.href) {
             <a [href]="l.href" class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">{{ l.label }}</a>
           }
-        </nav>
-        <div class="flex items-center gap-2">
-          <app-theme-toggle />
-          <a routerLink="/login" class="hidden rounded-full px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted sm:inline-flex">Log in</a>
-          <a routerLink="/signup" class="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background shadow-soft transition-all hover:shadow-glow hover:-translate-y-0.5">
-            Get started
-            <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-    </header>
+        </nav> -->
+    <nav class="hidden items-center gap-8 md:flex">
+      @for (l of links; track l.fragment) {
+      <a [routerLink]="['/']" [fragment]="l.fragment"
+        class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+        {{ l.label }}
+      </a>
+      }
+    </nav>
+    <div class="flex items-center gap-2">
+      <app-theme-toggle />
+      <a routerLink="/auth/login"
+        class="hidden rounded-full px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted sm:inline-flex">Log
+        in</a>
+      <a routerLink="/auth/register"
+        class="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background shadow-soft transition-all hover:shadow-glow hover:-translate-y-0.5">
+        Get started
+        <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M13 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</header>
