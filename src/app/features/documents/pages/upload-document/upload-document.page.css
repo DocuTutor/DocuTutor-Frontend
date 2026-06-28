@@ -1,1 +1,285 @@
-/* Upload Document Page Styles */
+.upload-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: var(--foreground);
+}
+
+.header {
+  margin-bottom: 3rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(to right, #fff, #94a3b8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header p {
+  color: var(--muted-foreground);
+  font-size: 1.1rem;
+}
+
+.upload-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 2rem;
+}
+
+.drop-zone {
+  background: rgba(13, 25, 30, 0.5);
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 60px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.drop-zone:hover {
+  border-color: var(--brand);
+  background: rgba(13, 25, 30, 0.8);
+  transform: translateY(-2px);
+}
+
+.drop-zone-icon {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, var(--brand) 0%, transparent 70%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  position: relative;
+}
+
+.drop-zone-icon svg {
+  width: 40px;
+  height: 40px;
+  color: #fff;
+}
+
+.drop-zone h2 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.drop-zone p {
+  color: var(--muted-foreground);
+  margin-bottom: 24px;
+}
+
+.btn-primary {
+  background-color: #fff;
+  color: #000;
+  padding: 12px 32px;
+  border-radius: 999px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Progress States */
+.processing-card {
+  background: rgba(13, 25, 30, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 32px;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.file-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-deep) 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-details h3 {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+.file-details p {
+  color: var(--muted-foreground);
+  font-size: 0.9rem;
+}
+
+.processing-status {
+  margin-left: auto;
+  color: var(--brand-soft);
+  font-size: 0.9rem;
+}
+
+.progress-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.step {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s;
+}
+
+.step.active {
+  background: rgba(74, 222, 128, 0.1);
+  border-color: rgba(74, 222, 128, 0.4);
+}
+
+.step.completed {
+  background: rgba(74, 222, 128, 0.05);
+  border-color: rgba(74, 222, 128, 0.2);
+}
+
+.step-indicator {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step.completed .step-indicator {
+  background: #22c55e;
+  border-color: #22c55e;
+}
+
+.step.completed .step-indicator svg {
+  width: 14px;
+  height: 14px;
+  color: #fff;
+}
+
+.info-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.info-card {
+  background: rgba(13, 25, 30, 0.8);
+  border-radius: 20px;
+  padding: 24px;
+}
+
+.info-card h4 {
+  color: var(--brand-soft);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 20px;
+}
+
+.info-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-card li {
+  color: var(--muted-foreground);
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+  display: flex;
+  gap: 12px;
+}
+
+.info-card li::before {
+  content: "→";
+  color: var(--brand-soft);
+}
+
+.privacy-card {
+  background: linear-gradient(135deg, rgba(8, 131, 149, 0.2) 0%, rgba(8, 131, 149, 0.1) 100%);
+  border: 1px solid rgba(8, 131, 149, 0.2);
+  border-radius: 20px;
+  padding: 24px;
+}
+
+.privacy-card h4 {
+  color: var(--brand-soft);
+  font-size: 0.8rem;
+  margin-bottom: 12px;
+}
+
+.success-container {
+  text-align: left;
+}
+
+.success-icon {
+  width: 64px;
+  height: 64px;
+  background: #22c55e;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.success-container h2 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
