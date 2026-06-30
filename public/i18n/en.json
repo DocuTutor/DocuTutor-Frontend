@@ -1,0 +1,404 @@
+{
+  "meta": {
+    "title": "DocuTutor — AI Study Assistant",
+    "description": "Upload a PDF or DOCX and instantly chat with it, generate quizzes, and get structured summaries."
+  },
+  "common": {
+    "language": "Language",
+    "getStarted": "Get started",
+    "logIn": "Log in",
+    "signUp": "Sign up",
+    "signOut": "Sign out",
+    "loading": "Loading…",
+    "save": "Save",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "back": "Back",
+    "next": "Next",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search",
+    "viewAll": "View all",
+    "upgrade": "Upgrade to Pro",
+    "newDocument": "New document"
+  },
+  "nav": {
+    "product": "Product",
+    "howItWorks": "How it works",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "dashboard": "Dashboard",
+    "upload": "Upload",
+    "activeDocument": "Active document",
+    "settings": "Settings",
+    "workspace": "Workspace",
+    "plan": "Plan"
+  },
+  "footer": {
+    "tagline": "DocuTutor turns any PDF or DOCX into a patient AI study partner — chat, quiz, and summarize, all in one calm workspace.",
+    "copyright": "© 2026 DocuTutor Labs. Made for curious students.",
+    "version": "Built with care · v1.0",
+    "columns": {
+      "product": "Product",
+      "resources": "Resources",
+      "company": "Company"
+    },
+    "links": {
+      "features": "Features",
+      "pricing": "Pricing",
+      "": "",
+      "changelog": "Changelog",
+      "help": "Help center",
+      "guides": "Study guides",
+      "blog": "Blog",
+      "roadmap": "Roadmap",
+      "about": "About",
+      "careers": "Careers",
+      "privacy": "Privacy",
+      "terms": "Terms"
+    }
+  },
+
+  "auth": {
+    "login": {
+      "eyebrow": "Welcome back",
+      "title": "Sign in to your study room",
+      "subtitle": "Pick up where you left off — your documents are waiting.",
+      "email": "Email",
+      "password": "Password",
+      "remember": "Keep me signed in",
+      "forgot": "Forgot password?",
+      "submit": "Sign in",
+      "noAccount": "Don't have an account?",
+      "createOne": "Create one"
+    },
+    "signup": {
+      "eyebrow": "Start free",
+      "title": "Create your DocuTutor account",
+      "subtitle": "3 free documents, no credit card. Upgrade when you're ready.",
+      "name": "Full name",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Create account",
+      "haveAccount": "Already have an account?",
+      "signIn": "Sign in"
+    },
+    "forgot": {
+      "eyebrow": "Reset access",
+      "title": "Forgot your password?",
+      "subtitle": "Enter your email and we'll send a reset link.",
+      "email": "Email",
+      "submit": "Send reset link",
+      "back": "Back to sign in"
+    },
+    "quote": "\"DocuTutor turned my 280-page econ textbook into a tutor I can actually talk to. Best $9 I spend each month.\"",
+    "quoteAuthor": "Maya R.",
+    "quoteRole": "CS Junior · Stanford"
+  },
+  "upload": {
+    "title": "Upload a document",
+    "subtitle": "PDF or DOCX, up to 50 MB. We handle the rest.",
+    "dropHere": "Drop a file here",
+    "or": "or",
+    "browse": "Browse files",
+    "processing": "Processing…",
+    "ready": "Ready",
+    "open": "Open workspace"
+  },
+  "workspace": {
+    "chat": "Chat",
+    "quiz": "Quiz me",
+    "summary": "Summarize",
+    "askPlaceholder": "Ask anything about this document…",
+    "thinking": "Thinking…",
+    "send": "Send",
+    "citations": "Citations",
+    "page": "p.{{page}}",
+    "suggestedPrompts": "Suggested prompts",
+    "generateQuiz": "Generate quiz",
+    "yourScore": "Your score",
+    "restart": "Restart",
+    "correct": "Correct!",
+    "incorrect": "Not quite.",
+    "keyTerms": "Key terms",
+    "studyTips": "Study tips",
+    "outline": "Outline"
+  },
+  "settings": {
+    "title": "Settings",
+    "profile": "Profile",
+    "appearance": "Appearance",
+    "language": "Language & region",
+    "billing": "Billing",
+    "notifications": "Notifications"
+  },
+  "validation": {
+    "required": "This field is required",
+    "email": "Enter a valid email address",
+    "minLength": "Must be at least {{count}} characters",
+    "passwordMatch": "Passwords do not match"
+  },
+  "toast": {
+    "languageChanged": "Language updated",
+    "saved": "Changes saved",
+    "errorGeneric": "Something went wrong. Please try again."
+  },
+  "empty": {
+    "noDocuments": "No documents yet — upload your first PDF or DOCX to begin.",
+    "noResults": "No results found."
+  },
+  "landing": {
+    "badge": "New · RAG + agent-powered tutor",
+    "heroTitle1": "Study any document",
+    "heroTitle2": "like you have",
+    "heroTitle3": "a private tutor.",
+    "heroSubtitle": "Upload a PDF or DOCX. DocuTutor reads it, then lets you chat, quiz yourself, and get structured summaries — all in one calm, beautifully simple workspace.",
+    "ctaStart": "Start studying free",
+    "ctaDemo": "Watch demo",
+    "lovedBy": "Loved by {{count}}+ students worldwide",
+    "usedAt": "USED BY STUDENTS AT",
+
+    "howEyebrow": "How it works",
+    "howTitle": "From a PDF to a private tutor in 30 seconds.",
+    "howSubtitle": "No setup, no prompts to learn. Drop a file, and DocuTutor handles the chunking, embeddings, and tutoring for you.",
+
+    "featuresEyebrow": "Three tools. One document.",
+    "featuresTitle": "The whole study loop, in one workspace.",
+    "featuresSubtitle": "Single-document focus on purpose — so the AI always has the right context, and you always know where you are.",
+     "featuresTitlePrefix": "The whole study loop, in ",
+    "featuresTitleHighlight": "one workspace",
+    "featuresTitleSuffix": ".",
+    "heroFloating": {
+      "quizTitle": "Quiz score",
+      "quizValue": "8 / 10 — nice!",
+      "citationValue": "Cited p. 12 & p. 14"
+    },
+    "steps": {
+      "upload": {
+        "title": "Upload",
+        "desc": "Drag in a PDF or DOCX — up to 200 pages on the free plan."
+      },
+      "process": {
+        "title": "Process",
+        "desc": "We chunk, embed and index the document privately to your account."
+      },
+      "study": {
+        "title": "Study",
+        "desc": "Chat with it, quiz yourself, or generate a structured summary."
+      },
+      "master": {
+        "title": "Master",
+        "desc": "Track progress, revisit weak spots, and retain more — calmly."
+      }
+    },
+
+    "featureCards": {
+      "chat": {
+        "tag": "Chat",
+        "title": "Ask anything, get cited answers.",
+        "desc": "Have a real conversation with your document. Every answer is grounded in the source, with page-level citations you can verify.",
+        "bullets": [
+          "Page-level citations",
+          "Follow-up suggestions",
+          "Plain-English explanations"
+        ]
+      },
+      "quiz": {
+        "tag": "Quiz Me",
+        "title": "Practice questions, auto-graded.",
+        "desc": "Generate MCQs straight from your material. Get feedback, retry, and watch your confidence climb session by session.",
+        "bullets": [
+          "MCQ + true/false",
+          "Instant explanations",
+          "Difficulty modes"
+        ]
+      },
+      "summary": {
+        "tag": "Summarize",
+        "title": "Study notes that actually scan.",
+        "desc": "Get a structured outline with key terms and study tips — perfect for a last-minute review the night before.",
+        "bullets": [
+          "Sectioned headings",
+          "Key term glossary",
+          "Copy / export ready"
+        ]
+      }
+    },
+
+    "whyEyebrow": "Why students love it",
+    "whyTitle1": "Less re-reading.",
+    "whyTitle2": "More remembering.",
+
+    "stats": [
+      {
+        "label": "Faster review sessions",
+        "desc": "Skip skimming. Ask, quiz, done."
+      },
+      {
+        "label": "Better retention",
+        "desc": "Active recall built into every tool."
+      },
+      {
+        "label": "Documents studied weekly",
+        "desc": "From textbooks to lecture notes."
+      },
+      {
+        "label": "Student rating",
+        "desc": "Loved across 90+ universities."
+      }
+    ],
+
+    "testimonialsEyebrow": "Loved by students",
+    "testimonialsTitle1": "What our lovely",
+    "testimonialsTitle2": "learners",
+    "testimonialsTitle3": "say",
+
+    "testimonials": [
+      {
+        "name": "Maya R.",
+        "role": "CS Junior, Stanford",
+        "quote": "It feels like having a TA on call. The cited answers are the killer feature — I trust them."
+      },
+      {
+        "name": "Ethan K.",
+        "role": "Med Student, Oxford",
+        "quote": "I run every lecture PDF through DocuTutor before exams. My retention is honestly through the roof."
+      },
+      {
+        "name": "Priya N.",
+        "role": "PhD, ETH Zürich",
+        "quote": "The quizzes catch the gaps I didn't know I had. Beautiful UI is the cherry on top."
+      }
+    ],
+
+    "pricingEyebrow": "Pricing",
+    "pricingTitle1": "Built for students.",
+    "pricingTitle2": "Priced like a coffee.",
+    "seeFullPricing": "See full pricing →",
+    "mostPopular": "Most popular",
+    "perMonth": "/ month",
+
+    "pricing": {
+      "free": {
+        "tier": "Free",
+        "desc": "Try DocuTutor with 3 documents per month.",
+        "items": [
+          "3 documents / mo",
+          "Chat & summary",
+          "10 quiz questions"
+        ]
+      },
+      "pro": {
+        "tier": "Pro",
+        "desc": "Everything you need for a busy semester.",
+        "items": [
+          "Unlimited documents",
+          "Unlimited chat & quizzes",
+          "Priority processing",
+          "Export to Notion / Markdown"
+        ]
+      },
+      "student": {
+        "tier": "Student Plus",
+        "desc": "50% off with a verified .edu email.",
+        "items": [
+          "All of Pro",
+          "Verified student badge",
+          "Group study (soon)"
+        ]
+      }
+    },
+
+    "choose": "Choose {{tier}}",
+
+    "faqEyebrow": "FAQ",
+    "faqTitle": "Things students ask us",
+    "faq": [
+      {
+        "q": "Which file types can I upload?",
+        "a": "PDF and DOCX, up to 200 pages on the free plan and 500 pages on Pro."
+      },
+      {
+        "q": "Is my document private?",
+        "a": "Yes. Documents are encrypted at rest, scoped to your account, and never used to train models."
+      },
+      {
+        "q": "Does DocuTutor make things up?",
+        "a": "Answers are grounded in your document and cited. If something isn't in the doc, the tutor says so."
+      },
+      {
+        "q": "Can I use it for textbooks?",
+        "a": "Absolutely — textbook chapters, lecture notes, research papers and slide decks all work."
+      },
+      {
+        "q": "Do you offer a student discount?",
+        "a": "Yes. Verify with a .edu email and get 50% off Pro forever."
+      }
+    ],
+
+    "ctaTitle": "Your next study session deserves a tutor.",
+    "ctaSubtitle": "Upload your first document in under 60 seconds. No credit card required.",
+    "ctaPricing": "View pricing"
+  },
+  "dashboard": {
+    "greeting": "Welcome back 👋",
+    "heading1": "Ready for another ",
+    "heading2": "deep dive",
+    "heading3": "?",
+    "searchPlaceholder": "Search documents…",
+    "uploadCardTitle": "Upload a new document",
+    "uploadCardDesc": "Drop a PDF or DOCX — we'll have your tutor ready in under a minute.",
+    "quickActions": "Quick actions",
+    "recent": "Recent documents",
+    "viewAll": "View all →",
+    "weekActivity": "This week's activity",
+    "last7Days": "Last 7 days",
+    "progress": "Progress",
+    "freePlan": "Free plan",
+    "freePlanUsage": "{{used}} / {{total}} documents",
+    "pages": "pages",
+    "stats": {
+      "documents": {
+        "label": "Documents",
+        "desc": "+3 this week"
+      },
+      "studyMinutes": {
+        "label": "Study minutes",
+        "desc": "+42 vs last week"
+      },
+      "quizAccuracy": {
+        "label": "Quiz accuracy",
+        "desc": "Personal best 🎉"
+      },
+      "streak": {
+        "label": "Streak",
+        "desc": "Keep it going!"
+      }
+    },
+    "quickActionItems": {
+      "continueChat": "Continue last chat",
+      "takeQuiz": "Take a 5-question quiz",
+      "resummarize": "Re-summarize neural-nets.pdf"
+    },
+    "documentDates": {
+      "twoHoursAgo": "2h ago",
+      "yesterday": "Yesterday",
+      "threeDaysAgo": "3d ago"
+    },
+    "days": {
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat",
+      "sun": "Sun"
+    },
+    "tip": {
+      "eyebrow": "Tip of the day",
+      "title": "Studying late? Run a 5-question quiz before bed — sleep cements what you just learned.",
+      "button": "Quick quiz →"
+    }
+  }
+}
+

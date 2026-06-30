@@ -240,3 +240,62 @@
   @keyframes fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 }
 
+@layer utilities {
+  html[dir='rtl'] .hero-blob-left {
+    left: auto;
+    right: -5rem;
+  }
+
+  html[dir='rtl'] .hero-blob-right {
+    right: auto;
+    left: 25%;
+  }
+
+  html[dir='rtl'] .hero-card-left {
+    left: auto;
+    right: -2rem;
+  }
+
+  html[dir='rtl'] .hero-card-right {
+    right: auto;
+    left: -1.5rem;
+  }
+
+  html[dir='rtl'] .feature-badge {
+    left: auto;
+    right: 1rem;
+  }
+
+  html[dir='rtl'] .hero-cta-arrow {
+    transform: scaleX(-1);
+  }
+
+  html[dir='rtl'] summary svg,
+  html[dir='rtl'] a svg[viewBox='0 0 24 24'] path[d='M5 12h14M13 5l7 7-7 7'] {
+    transform-origin: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  html[dir='rtl'] .navbar-cta-arrow {
+    transform: scaleX(-1);
+  }
+}
+

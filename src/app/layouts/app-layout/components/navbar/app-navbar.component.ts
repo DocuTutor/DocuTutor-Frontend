@@ -1,28 +1,34 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { ThemeToggleComponent } from "../../../../shared/components/theme-toggle/theme-toggle";
-import { LogoComponent } from "../../../../shared/components/logo-component/logo-component";
-import { RouterModule } from '@angular/router'; 
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
+
+import { ThemeToggleComponent } from '../../../../shared/components/theme-toggle/theme-toggle';
+import { LogoComponent } from '../../../../shared/components/logo-component/logo-component';
+import { LanguageSwitcherComponent } from '../../../../shared/components/language-switcher/language-switcher.component';
+
+interface NavLink {
+  labelKey: string;
+  fragment: string;
+}
 
 @Component({
   selector: 'app-navbar',
-  templateUrl: './app-navbar.component.html',
-  styleUrls: ['./app-navbar.component.css'],
   standalone: true,
+  templateUrl: './app-navbar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ThemeToggleComponent, LogoComponent,RouterModule],
+  imports: [
+    RouterLink,
+    TranslatePipe,
+    ThemeToggleComponent,
+    LogoComponent,
+    LanguageSwitcherComponent,
+  ],
 })
 export class AppNavbarComponent {
-
-  //   links = [
-  //   { label: "Product", href: "/#features" },
-  //   { label: "How it works", href: "/#how" },
-  //   { label: "Pricing", href: "/#pricing" },
-  //   { label: "FAQ", href: "/#faq" },
-  // ];
-  links = [
-  { label: "Product", fragment: "features" },
-  { label: "How it works", fragment: "how" },
-  { label: "Pricing", fragment: "pricing" },
-  { label: "FAQ", fragment: "faq" },
-];
+  readonly links: NavLink[] = [
+    { labelKey: 'nav.product', fragment: 'features' },
+    { labelKey: 'nav.howItWorks', fragment: 'how' },
+    { labelKey: 'nav.pricing', fragment: 'pricing' },
+    { labelKey: 'nav.faq', fragment: 'faq' },
+  ];
 }
