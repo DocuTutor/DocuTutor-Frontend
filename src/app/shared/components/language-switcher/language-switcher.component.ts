@@ -9,7 +9,7 @@ import type { Language } from '../../../core/types/language.type';
 @Component({
   selector: 'app-language-switcher',
   standalone: true,
-  imports: [TranslatePipe, AsyncPipe],
+  imports: [TranslatePipe],
   templateUrl: './language-switcher.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

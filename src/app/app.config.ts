@@ -1,11 +1,27 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter, withInMemoryScrolling } from '@angular/router';
-// import { authInterceptor } from './core/interceptors/auth-interceptor';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import {
+  ApplicationConfig,
+  provideBrowserGlobalErrorListeners,
+} from '@angular/core';
+
+import {
+  provideRouter,
+  withInMemoryScrolling,
+} from '@angular/router';
+
+import {
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
+
+import { provideStore } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
+
+import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { routes } from './app.routes';
 
-import { authInterceptor } from './core/interceptors/auth-interceptor';
+// import { authInterceptor } from './core/interceptors/auth-interceptor';
 import { translationInterceptor } from './core/interceptors/translation.interceptor';
 
 import { DEFAULT_LANGUAGE } from './core/constants/supported-languages';
@@ -18,19 +34,32 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
 
     provideRouter(
-
       routes,
-
       withInMemoryScrolling({
-
-        //Eman -> Search for better fit for best ux
-        scrollPositionRestoration: 'top', //will go to top of page when navigating to a new route
-        //scrolPositionRestoration: 'enabled', //will go to the last scroll position when navigating back to a previous route
-
-        anchorScrolling: 'enabled'
-
-      })
+        scrollPositionRestoration: 'enabled',
+        anchorScrolling: 'enabled',
+      }),
     ),
-    // provideHttpClient(withInterceptors([authInterceptor]))
-  ]
+
+    provideHttpClient(
+      withInterceptors([
+        // authInterceptor,
+        translationInterceptor,
+      ]),
+    ),
+
+    provideStore({
+      [languageFeatureKey]: languageReducer,
+    }),
+
+    provideEffects([LanguageEffects]),
+
+    provideTranslateService({
+      loader: provideTranslateHttpLoader({
+        prefix: './i18n/',
+        suffix: '.json',
+      }),
+      fallbackLang: DEFAULT_LANGUAGE,
+    }),
+  ],
 };

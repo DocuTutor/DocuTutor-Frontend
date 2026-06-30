@@ -8,7 +8,7 @@ import { DashboardSidebarComponent } from "./components/sidebar/dashboard-sideba
   selector: 'app-dashboard-shell',
   templateUrl: './dashboard-shell.component.html',
   styleUrls: ['./dashboard-shell.component.css'],
-  imports: [RouterLink, RouterOutlet, DashboardSidebarComponent],
+  imports: [ RouterOutlet, DashboardSidebarComponent],
 })
 export class DashboardShellComponent {
   

@@ -15,7 +15,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule, AuthLayoutComponent, RouterLink],
+  imports: [FormsModule, CommonModule, RouterLink],
   templateUrl: './login.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })

@@ -7,7 +7,7 @@ import { AuthService } from '../../../../core/services/auth.service';
 @Component({
   selector: 'app-reset-password',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterLink],
+  imports: [FormsModule, CommonModule],
   templateUrl: './reset-password.component.html'
 })
 export class ResetPasswordComponent  {

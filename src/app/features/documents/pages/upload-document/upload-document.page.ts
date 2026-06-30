@@ -8,7 +8,7 @@ export type UploadStatus = 'IDLE' | 'UPLOADING' | 'PROCESSING' | 'SUCCESS' | 'ER
 @Component({
   selector: 'app-upload-document-page',
   standalone: true,
-  imports: [RouterLink, DecimalPipe],
+  imports: [ DecimalPipe],
   templateUrl: './upload-document.page.html',
   styleUrl: './upload-document.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

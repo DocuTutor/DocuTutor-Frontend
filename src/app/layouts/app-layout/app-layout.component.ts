@@ -11,7 +11,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   templateUrl: './app-layout.component.html',
   styleUrls: ['./app-layout.component.css'],
   standalone: true,
-  imports: [RouterOutlet, AppNavbarComponent, AppFooterComponent,TranslatePipe],
+  imports: [ AppNavbarComponent, AppFooterComponent,TranslatePipe],
   
 })
 export class AppLayoutComponent {

@@ -15,7 +15,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule, CommonModule, AuthLayoutComponent, RouterModule],
+  imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './register.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })

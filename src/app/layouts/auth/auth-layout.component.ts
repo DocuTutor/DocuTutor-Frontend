@@ -8,7 +8,7 @@ import { DashboardSidebarComponent } from '../dashboard/components/sidebar/dashb
   templateUrl: './auth-layout.component.html',
   styleUrls: ['./auth-layout.component.css'],
   standalone: true,
-  imports: [RouterOutlet, AuthHeaderComponent, DashboardSidebarComponent],
+  imports: [RouterOutlet, AuthHeaderComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthLayoutComponent {}
