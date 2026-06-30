@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { AppNavbarComponent } from './components/navbar/app-navbar.component';
 import { AppFooterComponent,  } from './components/footer/app-footer.component';
 import { AppLayoutMockService } from './app-layout.mock.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 
 @Component({
@@ -10,22 +11,23 @@ import { AppLayoutMockService } from './app-layout.mock.service';
   templateUrl: './app-layout.component.html',
   styleUrls: ['./app-layout.component.css'],
   standalone: true,
-  imports: [RouterOutlet, AppNavbarComponent, AppFooterComponent],
+  imports: [RouterOutlet, AppNavbarComponent, AppFooterComponent,TranslatePipe],
   
 })
 export class AppLayoutComponent {
 
-  pad = (n: number) => String(n).padStart(2, "0");
-  private readonly mockService = inject(AppLayoutMockService);
+ private readonly mock = inject(AppLayoutMockService);
 
-  readonly avatars = this.mockService.avatars;
-  readonly unis = this.mockService.unis;
-  readonly steps = this.mockService.steps;
-  readonly features = this.mockService.features;
-  readonly stats = this.mockService.stats;
-  readonly testimonials = this.mockService.testimonials;
-  readonly miniPricing = this.mockService.miniPricing;
-  readonly faq = this.mockService.faq;
+  readonly avatars = this.mock.avatars;
+  readonly unis = this.mock.unis;
+  readonly steps = this.mock.steps;
+  readonly features = this.mock.features;
+  readonly stats = this.mock.stats;
+  readonly testimonials = this.mock.testimonials;
+  readonly miniPricing = this.mock.miniPricing;
+  readonly faqKeys = this.mock.faqKeys;
+
+  readonly pad = (n: number) => String(n).padStart(2, '0');
 
   
 }
