@@ -23,12 +23,25 @@ export interface ApiResponse<T> {
   errors: string[];
 }
 
-export interface LoginResponseData {
+
+export interface LoginResponse {
+userId: string;
+name: string;
+isAuthenticated: boolean;
+token: string;
+refreshToken: string;
+}
+
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
+
+export interface RefreshTokenResponse {
   userId: string;
   name: string;
   isAuthenticated: boolean;
   token: string;
   refreshToken: string;
-  roles: string[];
-  profilePicture: string;
 }
+

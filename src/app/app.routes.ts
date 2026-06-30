@@ -8,6 +8,7 @@ import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { LoginComponent } from './features/authentication/pages/login/login.component';
 import { RegisterComponent } from './features/authentication/pages/register/register.component';
+import { ForgetPasswordComponent } from './features/authentication/pages/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './features/authentication/pages/reset-password/reset-password.component';
 
 export const routes: Routes = [
@@ -34,7 +35,9 @@ export const routes: Routes = [
       { path: '', component: LoginComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+      {path:'forget-password',component:ForgetPasswordComponent},
       {path:'reset-password',component:ResetPasswordComponent}
+
     ]
   }
 ];

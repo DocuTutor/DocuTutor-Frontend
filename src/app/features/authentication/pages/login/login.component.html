@@ -120,7 +120,7 @@
     </label>
 
     <a class="text-[color:var(--brand)] hover:underline cursor-pointer"
-      routerLink="/auth/reset-password">
+      routerLink="/auth/forget-password">
 
       Forgot password?
     </a>
@@ -130,11 +130,11 @@
   <!-- Button -->
   <button
     type="submit"
-    [disabled]="isLoading"
+    [disabled]="isLoading()"
     class="w-full py-3 rounded-full bg-[color:var(--brand-deep)] text-white font-medium
            hover:opacity-90 transition disabled:opacity-50"
   >
-    {{ isLoading ? 'Loading...' : 'Continue to dashboard' }}
+    {{ isLoading() ? 'Loading...' : 'Continue to dashboard' }}
   </button>
 <div class="flex justify-center items-center gap-2 text-sm text-gray-500">
   <span>New to DocuTutor?</span>
@@ -148,9 +148,9 @@
 </div>
 
   <!-- Backend Error -->
-  @if (errorMessage) {
+  @if (errorMessage()) {
     <div class="text-red-500 text-sm text-center">
-      {{ errorMessage }}
+      {{ errorMessage() }}
     </div>
   }
 
