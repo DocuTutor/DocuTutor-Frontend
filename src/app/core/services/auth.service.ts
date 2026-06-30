@@ -50,57 +50,92 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { ApiResponse, LoginRequest, LoginResponse, RefreshTokenRequest, RefreshTokenResponse } from '../../features/authentication/models/auth.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private baseUrl = 'http://127.0.0.1:3658/m1/1212435-1208182-default/api/Auth';
+  private baseUrl = 'http://localhost:5008/api/Auth';
 
   private accessToken: string | null = null;
   private refreshTokenValue: string | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  login(data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/login`, data).pipe(
-      tap((res: any) => {
-        this.setSession(res.data);
+
+
+  register(model: any) { //Registerrequest
+    return this.http.post<ApiResponse<string>>(`${this.baseUrl}/register`, {
+      fullName: model.name,
+      email: model.email,
+      password: model.password,
+      confirmPassword: model.confirmPassword
+    });
+  }
+
+  login(model: LoginRequest): Observable<ApiResponse<LoginResponse>> {
+    return this.http.post<ApiResponse<LoginResponse>>(`${this.baseUrl}/login`, {
+      Email: model.email,
+      Password: model.password
+    }
+    ).pipe(
+      tap(res => {
+        if (res.isSuccess) {
+          this.setSession(res.data);
+        }
       })
     );
   }
 
-  register(data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/register`, data);
-  }
 
-  refreshToken(): Observable<any> {
-    return this.http.post(`${this.baseUrl}/refresh-token`, {
-      accessToken: this.accessToken,
-      refreshToken: this.refreshTokenValue
-    }).pipe(
-      tap((res: any) => {
-        this.setSession(res.data);
+  // refreshToken(model: RefreshTokenRequest) {
+  //   return this.http.post<ApiResponse<LoginResponse>>(`${this.baseUrl}/refresh-token`,
+  //     {
+  //       accessToken: model.accessToken,
+  //       refreshToken: model.refreshToken
+  //     }
+  //   );
+
+  // }
+  //This flow will be updated
+  refreshToken(): Observable<ApiResponse<RefreshTokenResponse>> {
+    const request: RefreshTokenRequest = {
+      accessToken: this.getAccessToken()!,
+      refreshToken: this.getRefreshToken()!
+    };
+
+    return this.http.post<ApiResponse<RefreshTokenResponse>>(
+      `${this.baseUrl}/refresh-token`,
+      request
+    ).pipe(
+      tap(res => {
+        if (res.isSuccess) {
+          this.setSession(res.data);
+        }
       })
     );
   }
 
   private setSession(data: any) {
-    this.accessToken = data.token;
-    this.refreshTokenValue = data.refreshToken;
+    localStorage.setItem('accessToken', data.token);
+    localStorage.setItem('refreshToken', data.refreshToken);
+    localStorage.setItem('user', JSON.stringify(data));
   }
 
   getAccessToken(): string | null {
-    return this.accessToken;
+    return localStorage.getItem('accessToken');
   }
 
   getRefreshToken(): string | null {
-    return this.refreshTokenValue;
+    return localStorage.getItem('refreshToken');
   }
 
   logout() {
-    this.accessToken = null;
-    this.refreshTokenValue = null;
+    localStorage.clear();
   }
 }
+
+
+

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { LoginResponseData } from '../../features/authentication/models/auth.models';
+import { LoginResponse } from '../../features/authentication/models/auth.models';
 
 @Injectable({ providedIn: 'root' })
 export class AuthStateService {
 
-  private user: LoginResponseData | null = null;
+  private user: LoginResponse | null = null;
 
-  setUser(user: LoginResponseData) {
+  setUser(user: LoginResponse) {
     this.user = user;
   }
 
