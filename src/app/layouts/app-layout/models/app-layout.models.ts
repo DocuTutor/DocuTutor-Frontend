@@ -6,7 +6,10 @@ export interface Feature {
   bulletKeys: string[];
 }
 
+import { PlanTier } from '../../../features/subscription/models/subscription.models';
+
 export interface PricingMini {
+  tier: PlanTier;
   tierKey: string;
   price: string;
   descKey: string;

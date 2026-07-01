@@ -1,12 +1,17 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { SubscriptionService } from '../../../subscription/services/subscription.service';
 
 @Component({
   selector: 'app-settings-component',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './settings-component.html',
   styleUrl: './settings-component.css',
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit {
+
+  private readonly subscriptionService = inject(SubscriptionService);
+  readonly subscription = this.subscriptionService.currentSubscription;
 
   tab = signal<"profile" | "billing" | "preferences" | "notifications">("profile");
   sections: { id: "profile" | "billing" | "preferences" | "notifications"; label: string; icon: string }[] = [
@@ -33,4 +38,24 @@ export class SettingsComponent {
     { label: "Quiz reminders", on: false },
     { label: "Marketing emails", on: false },
   ];
+
+  ngOnInit(): void {
+    this.subscriptionService.loadMySubscription().subscribe();
+  }
+
+  upgradeToPro(): void {
+    this.subscriptionService.createCheckoutSession('Pro').subscribe((res) => {
+      if (res.isSuccess) {
+        window.location.href = res.data.checkoutUrl;
+      }
+    });
+  }
+
+  manageBilling(): void {
+    this.subscriptionService.createPortalSession().subscribe((res) => {
+      if (res.isSuccess) {
+        window.location.href = res.data.portalUrl;
+      }
+    });
+  }
 }

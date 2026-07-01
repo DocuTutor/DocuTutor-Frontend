@@ -10,6 +10,8 @@ import { LoginComponent } from './features/authentication/pages/login/login.comp
 import { RegisterComponent } from './features/authentication/pages/register/register.component';
 import { ForgetPasswordComponent } from './features/authentication/pages/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './features/authentication/pages/reset-password/reset-password.component';
+import { BillingSuccessPage } from './features/subscription/pages/billing-success/billing-success.page';
+import { BillingCancelPage } from './features/subscription/pages/billing-cancel/billing-cancel.page';
 
 export const routes: Routes = [
   {
@@ -17,6 +19,18 @@ export const routes: Routes = [
   component: AppLayoutComponent,
   children: [
   ],
+},
+  {
+  path: 'pricing',
+  component: AppLayoutComponent,
+},
+  {
+  path: 'billing/success',
+  component: BillingSuccessPage,
+},
+  {
+  path: 'billing/cancel',
+  component: BillingCancelPage,
 },
   {
   path: 'dashboard',

@@ -45,13 +45,23 @@
               <div class="mt-6 space-y-4">
                 <div class="rounded-2xl bg-gradient-to-br from-brand-deep to-brand p-6 text-white">
                   <div class="text-xs uppercase tracking-wider text-white/70">Current plan</div>
-                  <div class="mt-1 font-display text-2xl font-bold">Free</div>
-                  <p class="mt-1 text-sm text-white/80">2 of 3 monthly documents used.</p>
-                  <button class="mt-4 rounded-full bg-warning px-4 py-2 text-xs font-bold text-warning-foreground">Upgrade to Pro</button>
+                  <div class="mt-1 font-display text-2xl font-bold">{{ subscription()?.plan ?? 'Free' }}</div>
+                  @if (subscription(); as sub) {
+                    @if (sub.cancelAtPeriodEnd) {
+                      <p class="mt-1 text-sm text-white/80">Cancels at the end of the current period.</p>
+                    } @else if (sub.currentPeriodEnd) {
+                      <p class="mt-1 text-sm text-white/80">Renews {{ sub.currentPeriodEnd | date }}.</p>
+                    }
+                  }
+                  @if (subscription()?.plan === 'Free' || !subscription()) {
+                    <button (click)="upgradeToPro()" class="mt-4 rounded-full bg-warning px-4 py-2 text-xs font-bold text-warning-foreground">Upgrade to Pro</button>
+                  } @else {
+                    <button (click)="manageBilling()" class="mt-4 rounded-full bg-warning px-4 py-2 text-xs font-bold text-warning-foreground">Manage billing</button>
+                  }
                 </div>
                 <div class="rounded-2xl border border-border p-4">
                   <div class="text-sm font-semibold text-foreground">Payment method</div>
-                  <div class="text-xs text-muted-foreground">No card on file yet.</div>
+                  <div class="text-xs text-muted-foreground">Managed securely by Stripe. Use "Manage billing" above to update your card.</div>
                 </div>
               </div>
             </section>

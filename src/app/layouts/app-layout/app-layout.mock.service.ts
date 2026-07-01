@@ -81,6 +81,7 @@ export class AppLayoutMockService {
 
   readonly miniPricing: PricingMini[] = [
     {
+      tier: 'Free',
       tierKey: 'landing.pricing.free.tier',
       price: '\$0',
       descKey: 'landing.pricing.free.desc',
@@ -91,6 +92,7 @@ export class AppLayoutMockService {
       ],
     },
     {
+      tier: 'Pro',
       tierKey: 'landing.pricing.pro.tier',
       price: '\$9',
       highlight: true,
@@ -103,6 +105,7 @@ export class AppLayoutMockService {
       ],
     },
     {
+      tier: 'StudentPlus',
       tierKey: 'landing.pricing.student.tier',
       price: '\$5',
       descKey: 'landing.pricing.student.desc',
