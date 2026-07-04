@@ -1,0 +1,42 @@
+<div class="flex flex-wrap items-center gap-2">
+      <div class="relative min-w-[220px] flex-1">
+        <svg class="pointer-events-none absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input
+          type="search"
+          [ngModel]="search()"
+          (ngModelChange)="searchChange.emit($event)"
+          [placeholder]="'documents.searchPlaceholder' | translate"
+          [attr.aria-label]="'documents.searchPlaceholder' | translate"
+          class="w-full rounded-full border border-border bg-card py-2.5 ps-9 pe-4 text-sm outline-none transition-colors focus:border-brand focus:ring-4 focus:ring-brand/15"
+        />
+      </div>
+
+      <div class="relative">
+        <select
+          [ngModel]="filter()"
+          (ngModelChange)="filterChange.emit($event)"
+          [attr.aria-label]="'documents.filter' | translate"
+          class="appearance-none rounded-full border border-border bg-card py-2.5 ps-4 pe-9 text-sm font-medium text-foreground outline-none transition-colors hover:bg-muted focus:border-brand focus:ring-4 focus:ring-brand/15"
+        >
+          <option value="all">{{ 'documents.filters.all' | translate }}</option>
+          <option value="processing">{{ 'documents.filters.processing' | translate }}</option>
+          <option value="completed">{{ 'documents.filters.completed' | translate }}</option>
+          <option value="failed">{{ 'documents.filters.failed' | translate }}</option>
+        </select>
+        <svg class="pointer-events-none absolute end-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+
+      <div class="relative">
+        <select [ngModel]="sort()" (ngModelChange)="sortChange.emit($event)" [attr.aria-label]="'documents.sort' | translate" class="appearance-none rounded-full border border-border bg-card py-2.5 ps-4 pe-9 text-sm font-medium text-foreground outline-none transition-colors hover:bg-muted focus:border-brand focus:ring-4 focus:ring-brand/15">
+          <option value="recent">{{ 'documents.sortOpts.recent' | translate }}</option>
+          <option value="name">{{ 'documents.sortOpts.name' | translate }}</option>
+          <option value="size">{{ 'documents.sortOpts.size' | translate }}</option>
+        </select>
+        <svg class="pointer-events-none absolute end-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+
+      <a routerLink="/dashboard/upload" class="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-2.5 text-sm font-semibold text-background shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-glow">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        {{ 'documents.upload' | translate }}
+      </a>
+    </div>

@@ -1,0 +1,9 @@
+<div class="grid place-items-center rounded-3xl border border-dashed border-border bg-card/60 px-6 py-16 text-center">
+      <div class="grid h-24 w-24 place-items-center rounded-3xl gradient-brand text-4xl text-white shadow-glow">📄</div>
+      <h3 class="mt-6 font-display text-2xl font-bold text-foreground">{{ 'documents.empty.title' | translate }}</h3>
+      <p class="mt-2 max-w-md text-sm text-muted-foreground">{{ 'documents.empty.subtitle' | translate }}</p>
+      <a routerLink="/app/upload" class="mt-6 inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-glow">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        {{ 'documents.upload' | translate }}
+      </a>
+</div>

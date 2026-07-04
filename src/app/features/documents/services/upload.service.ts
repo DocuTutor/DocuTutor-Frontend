@@ -7,7 +7,7 @@ import { DocumentUploadResponse } from '../interfaces/document-upload-response.i
   providedIn: 'root'
 })
 export class UploadService {
-  private apiUrl = '/api/Document';
+  private apiUrl = 'https://docututor.runasp.net/api/Document';
 
   uploadProgress = signal<number>(0);
 

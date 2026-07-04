@@ -9,6 +9,9 @@ export interface DashboardQuickAction {
   icon: string;
   keyLabel: string;
 }
+export interface Document{
+  
+}
 
 export interface DashboardDocumentCard {
   id: string;

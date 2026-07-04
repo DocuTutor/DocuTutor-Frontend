@@ -1,1 +1,3 @@
-/* Documents Page Styles */
+:host {
+  display: block;
+}

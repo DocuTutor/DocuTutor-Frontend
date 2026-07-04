@@ -1,0 +1,72 @@
+    <article class="group relative overflow-hidden rounded-3xl border border-border bg-card p-5 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card">
+      <div class="pointer-events-none absolute -end-8 -top-8 h-32 w-32 rounded-full bg-gradient-to-br opacity-15 transition-opacity group-hover:opacity-25" [class]="doc().color"></div>
+
+      <div class="flex items-start justify-between">
+        <a [routerLink]="['/dashboard/documents', doc().id]" class="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br text-2xl text-white shadow-soft" [class]="doc().color" [attr.aria-label]="'documents.actions.open' | translate">
+          {{ doc().emoji }}
+        </a>
+
+        <div class="flex items-center gap-1.5">
+          <span
+            class="rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider"
+            [class]="statusClass(doc().status)"
+          >
+            {{ 'documents.status.' + doc().status | translate }}
+          </span>
+
+          <div class="relative">
+            <button
+              type="button"
+              (click)="toggleMenu($event)"
+              class="grid h-8 w-8 place-items-center rounded-full text-muted-foreground transition-colors hover:bg-muted"
+              [attr.aria-label]="'documents.actions.menu' | translate"
+              [attr.aria-expanded]="menuOpen()"
+              aria-haspopup="menu"
+            >
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+            </button>
+            @if (menuOpen()) {
+              <div role="menu" class="absolute end-0 top-9 z-20 w-40 rounded-2xl border border-border bg-popover p-1.5 text-sm shadow-card">
+                @for (a of actions; track a) {
+                  <button role="menuitem" (click)="pick(a, $event)" class="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-start text-foreground transition-colors hover:bg-muted">
+                    {{ 'documents.actions.' + a | translate }}
+                  </button>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <a [routerLink]="['/dashboard/documents', doc().id]" class="mt-5 block">
+        <h3 class="line-clamp-2 font-semibold text-foreground">{{ doc().title }}</h3>
+        <p class="mt-1 text-xs text-muted-foreground">
+          {{ doc().type }} · {{ doc().size }} · {{ doc().updatedAtRaw }}
+        </p>
+      </a>
+
+      <div class="mt-4 flex flex-wrap gap-1.5">
+        <span class="inline-flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 text-[10px] font-semibold text-muted-foreground">
+          <span class="h-1.5 w-1.5 rounded-full" [class]="dot(doc().aiSummary)"></span>
+          {{ 'documents.features.summary' | translate }}
+        </span>
+        <span class="inline-flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 text-[10px] font-semibold text-muted-foreground">
+          <span class="h-1.5 w-1.5 rounded-full" [class]="dot(doc().quiz)"></span>
+          {{ 'documents.features.quiz' | translate }}
+        </span>
+        <span class="inline-flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 text-[10px] font-semibold text-muted-foreground">
+          <span class="h-1.5 w-1.5 rounded-full" [class]="dot(doc().flashcards)"></span>
+          {{ 'documents.features.flashcards' | translate }}
+        </span>
+      </div>
+
+      <div class="mt-4">
+        <div class="flex items-center justify-between text-[11px] text-muted-foreground">
+          <span>{{ 'documents.progress' | translate }}</span>
+          <span class="font-semibold text-foreground">{{ doc().progress }}%</span>
+        </div>
+        <div class="mt-1.5 h-1.5 overflow-hidden rounded-full bg-muted">
+          <div class="h-full rounded-full gradient-brand transition-all" [style.width.%]="doc().progress"></div>
+        </div>
+      </div>
+    </article>
