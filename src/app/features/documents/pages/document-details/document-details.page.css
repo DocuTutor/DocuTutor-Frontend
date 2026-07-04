@@ -1,1 +1,61 @@
-/* Document Details Page Styles */
+.document-details-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.document-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.document-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary, #111827);
+  margin: 0 0 0.5rem;
+}
+
+.document-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-secondary, #6b7280);
+  margin: 0;
+}
+
+.chat-section {
+  height: calc(100vh - 12rem);
+  min-height: 600px;
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.loading-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-secondary, #6b7280);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .document-details-container {
+    padding: 1rem;
+  }
+
+  .document-title {
+    font-size: 1.5rem;
+  }
+
+  .document-subtitle {
+    font-size: 1rem;
+  }
+
+  .chat-section {
+    height: calc(100vh - 10rem);
+    min-height: 500px;
+  }
+}
