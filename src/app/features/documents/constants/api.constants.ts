@@ -2,12 +2,13 @@
  * API Configuration Constants
  * Centralized API endpoint configuration
  */
+import { environment } from '../../../../environments/environment';
 
 /**
  * Base URL for the backend API
  * This should be updated based on environment (dev/prod)
  */
-export const API_BASE_URL = 'http://127.0.0.1:3658/m1/1212435-1208182-default/api';
+export const API_BASE_URL = environment.apiUrl;
 
 /**
  * API Endpoints

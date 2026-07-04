@@ -1,4 +1,5 @@
-import { Component, EventEmitter, input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, input, Output } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DocFilter, DocSort } from '../../types/document.type';
@@ -6,7 +7,7 @@ import { DocFilter, DocSort } from '../../types/document.type';
 @Component({
   selector: 'app-document-toolbar',
   templateUrl: './document-toolbar.component.html',
-  imports:[TranslatePipe,FormsModule],
+  imports:[TranslatePipe,FormsModule,RouterLink],
 })
 export class DocumentToolbarComponent  {
 

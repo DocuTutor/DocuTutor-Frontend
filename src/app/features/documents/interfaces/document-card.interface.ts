@@ -1,7 +1,15 @@
-import { DashboardDocumentCard } from "../../dashboard/models/dashboard.models";
 import { DocStatus } from "../types/document.type";
 
-export interface DocumentCardModel extends DashboardDocumentCard {
+export interface DocumentCardModel {
+  id: string;
+  userId: string;
+  title: string;
+  type: string;
+  createdAt: string;
+  updatedAtRaw: string;
+  progress: number;
+  emoji: string;
+  color: string;
   status: DocStatus;
   aiSummary: "ready" | "generating" | "pending";
   quiz: "ready" | "generating" | "pending";
