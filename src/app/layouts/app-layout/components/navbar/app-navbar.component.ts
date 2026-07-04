@@ -1,10 +1,12 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { ThemeToggleComponent } from '../../../../shared/components/theme-toggle/theme-toggle';
 import { LogoComponent } from '../../../../shared/components/logo-component/logo-component';
 import { LanguageSwitcherComponent } from '../../../../shared/components/language-switcher/language-switcher.component';
+import { LogoutComponent } from '../../../../features/authentication/pages/logout.component';
+import { AuthService } from '../../../../core/services/auth.service';
 
 interface NavLink {
   labelKey: string;
@@ -22,13 +24,18 @@ interface NavLink {
     ThemeToggleComponent,
     LogoComponent,
     LanguageSwitcherComponent,
+    LogoutComponent,
   ],
 })
 export class AppNavbarComponent {
+  private readonly authService = inject(AuthService);
+
   readonly links: NavLink[] = [
     { labelKey: 'nav.product', fragment: 'features' },
     { labelKey: 'nav.howItWorks', fragment: 'how' },
     { labelKey: 'nav.pricing', fragment: 'pricing' },
     { labelKey: 'nav.faq', fragment: 'faq' },
   ];
+
+  readonly isAuthenticated = this.authService.isAuthenticated;
 }

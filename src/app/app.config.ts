@@ -21,7 +21,7 @@ import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { routes } from './app.routes';
 
-// import { authInterceptor } from './core/interceptors/auth-interceptor';
+import { authInterceptor } from './core/interceptors/auth-interceptor';
 import { translationInterceptor } from './core/interceptors/translation.interceptor';
 
 import { DEFAULT_LANGUAGE } from './core/constants/supported-languages';
@@ -43,7 +43,7 @@ export const appConfig: ApplicationConfig = {
 
     provideHttpClient(
       withInterceptors([
-        // authInterceptor,
+        authInterceptor,
         translationInterceptor,
       ]),
     ),
