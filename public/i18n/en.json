@@ -359,6 +359,8 @@
     "uploadCardDesc": "Drop a PDF or DOCX — we'll have your tutor ready in under a minute.",
     "quickActions": "Quick actions",
     "recent": "Recent documents",
+    "recentEmptyTitle": "No recent documents yet",
+    "recentEmptySubtitle": "Upload a document and it will appear here once it is processed.",
     "viewAll": "View all →",
     "weekActivity": "This week's activity",
     "last7Days": "Last 7 days",
@@ -456,6 +458,10 @@
     "empty": {
       "title": "No documents yet",
       "subtitle": "Upload your first PDF or DOCX to start chatting, quizzing, and summarizing."
+    },
+    "errors": {
+      "loadFailed": "Unable to load documents right now.",
+      "retry": "Retry"
     },
     "pagination": {
       "label": "Documents pagination",

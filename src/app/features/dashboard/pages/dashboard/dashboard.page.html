@@ -26,6 +26,7 @@
       </button>
     </div>
   </div>
+</div>
 
   <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
     @for (stat of stats; track stat.keyLabel) {
@@ -98,55 +99,75 @@
     </button>
   </div>
 
-  <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-    @for (document of documents; track document.id) {
-      <a
-        [routerLink]="['/dashboard/documents', document.id]"
-        class="group relative overflow-hidden rounded-3xl border border-border bg-card p-5 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
-      >
-        <div
-          class="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-gradient-to-br opacity-15 transition-opacity group-hover:opacity-25"
-          [class]="document.color"
-        ></div>
-
-        <div class="flex items-start justify-between">
-          <span
-            class="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br text-2xl text-white shadow-soft"
-            [class]="document.color"
-          >
-            {{ document.emoji }}
-          </span>
-
-          <span class="rounded-full bg-muted px-2 py-0.5 text-[10px] font-semibold uppercase text-muted-foreground">
-            {{ document.type }}
-          </span>
-        </div>
-
-        <div class="mt-5 font-semibold text-foreground">
-          {{ document.title }}
-        </div>
-
-        <div class="mt-1 text-xs text-muted-foreground">
-          {{ document.pages }} {{ 'dashboard.pages' | translate }} · {{ document.size }} ·
-          {{ document.updatedAtKey ? (document.updatedAtKey | translate) : document.updatedAtRaw }}
-        </div>
-
-        <div class="mt-4">
-          <div class="flex items-center justify-between text-[11px] text-muted-foreground">
-            <span>{{ 'dashboard.progress' | translate }}</span>
-            <span class="font-semibold text-foreground">{{ document.progress }}%</span>
-          </div>
-
-          <div class="mt-1.5 h-1.5 overflow-hidden rounded-full bg-muted">
-            <div
-              class="h-full rounded-full gradient-brand transition-all"
-              [style.width.%]="document.progress"
-            ></div>
-          </div>
-        </div>
+  @if (loadingRecentDocuments()) {
+    <div class="mt-5 rounded-3xl border border-border bg-card p-8 text-sm text-muted-foreground shadow-soft">
+      {{ 'common.loading' | translate }}
+    </div>
+  } @else if (recentDocuments().length === 0) {
+    <div class="mt-5 rounded-3xl border border-dashed border-border bg-card p-8 text-center shadow-soft">
+      <div class="mx-auto grid h-16 w-16 place-items-center rounded-2xl gradient-brand text-2xl text-white shadow-soft">📄</div>
+      <h3 class="mt-4 font-display text-xl font-semibold text-foreground">
+        {{ 'dashboard.recentEmptyTitle' | translate }}
+      </h3>
+      <p class="mt-2 text-sm text-muted-foreground">
+        {{ 'dashboard.recentEmptySubtitle' | translate }}
+      </p>
+      <a routerLink="/dashboard/upload" class="mt-5 inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-glow">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        {{ 'documents.upload' | translate }}
       </a>
-    }
-  </div>
+    </div>
+  } @else {
+    <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+      @for (document of recentDocuments(); track document.id) {
+        <a
+          [routerLink]="['/dashboard/documents', document.id]"
+          class="group relative overflow-hidden rounded-3xl border border-border bg-card p-5 shadow-soft transition-all hover:-translate-y-1 hover:shadow-card"
+        >
+          <div
+            class="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-gradient-to-br opacity-15 transition-opacity group-hover:opacity-25"
+            [class]="document.color"
+          ></div>
+
+          <div class="flex items-start justify-between">
+            <span
+              class="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br text-2xl text-white shadow-soft"
+              [class]="document.color"
+            >
+              {{ document.emoji }}
+            </span>
+
+            <span class="rounded-full bg-muted px-2 py-0.5 text-[10px] font-semibold uppercase text-muted-foreground">
+              {{ document.type }}
+            </span>
+          </div>
+
+          <div class="mt-5 font-semibold text-foreground">
+            {{ document.title }}
+          </div>
+
+          <div class="mt-1 text-xs text-muted-foreground">
+            {{ document.updatedAtRaw }} · {{ 'documents.status.' + document.status | translate }}
+          </div>
+
+          <div class="mt-4">
+            <div class="flex items-center justify-between text-[11px] text-muted-foreground">
+              <span>{{ 'dashboard.progress' | translate }}</span>
+              <span class="font-semibold text-foreground">{{ document.progress }}%</span>
+            </div>
+
+            <div class="mt-1.5 h-1.5 overflow-hidden rounded-full bg-muted">
+              <div
+                class="h-full rounded-full gradient-brand transition-all"
+                [style.width.%]="document.progress"
+              ></div>
+            </div>
+          </div>
+        </a>
+      }
+    </div>
+
+  }
 
   <div class="mt-10 grid gap-5 lg:grid-cols-3">
     <div class="rounded-3xl border border-border bg-card p-6 shadow-soft lg:col-span-2">
@@ -194,4 +215,3 @@
       </button>
     </div>
   </div>
-</div>

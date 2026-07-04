@@ -1,52 +1,109 @@
-import { ChangeDetectionStrategy, Component, computed, signal } from "@angular/core";
-import { DocumentCardModel } from "../../interfaces/document-card.interface";
-import { documents } from "../../../workspace/models/workspace.mock";
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from "@angular/core";
 import { TranslatePipe } from "@ngx-translate/core";
 import { DocStat } from "../../interfaces/document-statistics.interface";
-import { DocFilter, DocSort, DocAction } from "../../types/document.type";
+import { DocFilter, DocSort, DocAction, DocStatus } from "../../types/document.type";
 import { DocumentToolbarComponent } from "../../components/document-toolbar/document-toolbar.component";
 import { DocumentCardComponent } from "../../components/document-card/document-card.component";
 import { DocumentStatisticsComponent } from "../../components/document-statistics/document-statistics.component";
 import { EmptyDocumentsComponent } from "../../components/empty-documents/empty-documents.component";
 import { LoadingSkeletonComponent } from "../../components/loading-skeleton/loading-skeleton.component";
 import { DocumentPaginationComponent } from "../../components/document-pagination/document-pagination.component";
+import { DocumentService } from "../../services/document.service";
+import { DocumentUploadResponse } from "../../interfaces/document-upload-response.interface";
+import { DocumentCardModel } from "../../interfaces/document-card.interface";
 
-
-const STATUS_CYCLE: DocumentCardModel["status"][] = ["completed", "processing", "completed", "failed"];
-const FEATURE_CYCLE: DocumentCardModel["aiSummary"][] = ["ready", "generating", "pending"];
-
-function toCard(d: (typeof documents)[number], i: number): DocumentCardModel {
-  return {
-    ...d,
-    status: STATUS_CYCLE[i % STATUS_CYCLE.length],
-    aiSummary: FEATURE_CYCLE[i % 3],
-    quiz: FEATURE_CYCLE[(i + 1) % 3],
-    flashcards: FEATURE_CYCLE[(i + 2) % 3],
-  };
+function normalizeStatus(status: string | null | undefined): DocStatus {
+  switch ((status ?? "").trim().toLowerCase()) {
+    case "processing":
+      return "processing";
+    case "ready":
+    case "completed":
+      return "completed";
+    case "failed":
+    case "error":
+      return "failed";
+    default:
+      return "processing";
+  }
 }
 
-// Expand mock data so pagination has something to page through.
-const SEED: DocumentCardModel[] = Array.from({ length: 11 }, (_, i) =>
-  toCard(documents[i % documents.length], i),
-).map((d, i) => ({ ...d, id: `${d.id}-${i}` }));
+function toCard(doc: DocumentUploadResponse): DocumentCardModel {
+  const status = normalizeStatus(doc.status);
+  const uploadedAt = new Date(doc.createdAt);
+  const extension = doc.fileName.split(".").pop()?.toUpperCase() || "FILE";
+
+  return {
+    id: doc.documentId,
+    userId: doc.userId,
+    title: doc.fileName.replace(/\.[^.]+$/, ""),
+    type: extension,
+    createdAt: doc.createdAt,
+    updatedAtRaw: uploadedAt.toLocaleDateString(undefined, {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    }),
+    status,
+    progress: status === "completed" ? 100 : status === "processing" ? 48 : 12,
+    emoji: status === "completed" ? "✅" : status === "processing" ? "⏳" : "⚠️",
+    color:
+      status === "completed"
+        ? "from-emerald-500 to-cyan-500"
+        : status === "processing"
+          ? "from-amber-500 to-orange-500"
+          : "from-rose-500 to-red-500",
+    aiSummary: status === "completed" ? "ready" : status === "processing" ? "generating" : "pending",
+    quiz: status === "completed" ? "ready" : "pending",
+    flashcards: status === "completed" ? "ready" : "pending",
+  };
+}
 
 @Component({
   selector: "app-documents-page",
   standalone: true,
-  imports: [TranslatePipe,DocumentCardComponent,DocumentToolbarComponent,DocumentStatisticsComponent,EmptyDocumentsComponent,LoadingSkeletonComponent,DocumentPaginationComponent,],
+  imports: [TranslatePipe, DocumentCardComponent, DocumentToolbarComponent, DocumentStatisticsComponent, EmptyDocumentsComponent, LoadingSkeletonComponent, DocumentPaginationComponent],
   templateUrl: "./documents.page.html",
   styleUrl: "./documents.page.css",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DocumentsPage {
+export class DocumentsPage implements OnInit {
   readonly pageSize = 8;
 
-  readonly loading = signal(false);
-  readonly allDocs = signal<DocumentCardModel[]>(SEED);
+  private readonly documentService = inject(DocumentService);
+
+  readonly loading = signal(true);
+  readonly errorKey = signal<string | null>(null);
+  readonly allDocs = signal<DocumentCardModel[]>([]);
   readonly search = signal("");
   readonly filter = signal<DocFilter>("all");
   readonly sort = signal<DocSort>("recent");
   readonly page = signal(1);
+
+  ngOnInit(): void {
+    this.loadDocuments();
+  }
+
+  private loadDocuments(): void {
+    this.loading.set(true);
+    this.errorKey.set(null);
+
+    this.documentService.getUserDocuments().subscribe({
+      next: (docs) => {
+        this.allDocs.set(docs.map(toCard));
+        this.page.set(1);
+        this.loading.set(false);
+      },
+      error: () => {
+        this.allDocs.set([]);
+        this.errorKey.set("documents.errors.loadFailed");
+        this.loading.set(false);
+      },
+    });
+  }
+
+  onRetry(): void {
+    this.loadDocuments();
+  }
 
   readonly stats = computed<DocStat[]>(() => {
     const docs = this.allDocs();
@@ -66,21 +123,24 @@ export class DocumentsPage {
     if (f !== "all") out = out.filter((d) => d.status === f);
     if (q) out = out.filter((d) => d.title.toLowerCase().includes(q));
     switch (this.sort()) {
-      case "name": out = [...out].sort((a, b) => a.title.localeCompare(b.title)); break;
-      case "size": out = [...out].sort((a, b) => b.pages - a.pages); break;
+      case "name":
+        out = [...out].sort((a, b) => a.title.localeCompare(b.title));
+        break;
       default: break;
     }
     return out;
   });
 
+  readonly totalPages = computed(() => Math.max(1, Math.ceil(this.filtered().length / this.pageSize)));
+
   readonly paginated = computed(() => {
-    const start = (this.page() - 1) * this.pageSize;
+    const start = (Math.min(this.page(), this.totalPages()) - 1) * this.pageSize;
     return this.filtered().slice(start, start + this.pageSize);
   });
 
   onSearch(v: string) { this.search.set(v); this.page.set(1); }
   onFilter(v: DocFilter) { this.filter.set(v); this.page.set(1); }
-  onSort(v: DocSort) { this.sort.set(v); }
+  onSort(v: DocSort) { this.sort.set(v); this.page.set(1); }
 
   onCardAction(e: { id: string; action: DocAction }) {
     if (e.action === "delete") {

@@ -29,6 +29,19 @@
   <section class="mt-6">
     @if (loading()) {
       <app-loading-skeleton [count]="8" />
+    } @else if (errorKey()) {
+      <div class="rounded-3xl border border-destructive/30 bg-destructive/10 px-6 py-5 text-sm text-destructive">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <p>{{ errorKey() | translate }}</p>
+          <button
+            type="button"
+            (click)="onRetry()"
+            class="inline-flex items-center gap-2 rounded-full border border-destructive/30 bg-background px-4 py-2 font-semibold text-destructive transition-colors hover:bg-destructive/5"
+          >
+            {{ 'documents.errors.retry' | translate }}
+          </button>
+        </div>
+      </div>
     } @else if (filtered().length === 0) {
       <app-empty-documents />
     } @else {
