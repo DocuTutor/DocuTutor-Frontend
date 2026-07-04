@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { LogoComponent } from '../../../../shared/components/logo-component/logo-component';
+import { LanguageSwitcherComponent } from "../../../../shared/components/language-switcher/language-switcher.component";
 
 /**
  * Auth Header Component
@@ -16,6 +17,6 @@ import { LogoComponent } from '../../../../shared/components/logo-component/logo
   styleUrls: ['./auth-header.component.css'],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LogoComponent]
+  imports: [LogoComponent, LanguageSwitcherComponent]
 })
 export class AuthHeaderComponent {}

@@ -11,11 +11,12 @@ import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthLayoutComponent } from '../../../../layouts/auth/auth-layout.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterModule],
+  imports: [FormsModule, CommonModule, RouterModule,TranslatePipe],
   templateUrl: './register.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })

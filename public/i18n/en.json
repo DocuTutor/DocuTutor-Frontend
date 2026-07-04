@@ -71,28 +71,32 @@
       "subtitle": "Pick up where you left off — your documents are waiting.",
       "email": "Email",
       "password": "Password",
-      "remember": "Keep me signed in",
+      "remember": "Remember me",
       "forgot": "Forgot password?",
       "submit": "Sign in",
       "noAccount": "Don't have an account?",
-      "createOne": "Create one"
+      "createOne": "Create an account",
+      "loading": "Loading..."
     },
     "signup": {
       "eyebrow": "Start free",
-      "title": "Create your DocuTutor account",
+      "title": "Create your account",
       "subtitle": "3 free documents, no credit card. Upgrade when you're ready.",
       "name": "Full name",
       "email": "Email",
       "password": "Password",
+      "confirmPassword": "Confirm Password",
       "submit": "Create account",
       "haveAccount": "Already have an account?",
-      "signIn": "Sign in"
+      "signIn": "Sign in",
+      "loading": "Loading..."
     },
     "forgot": {
       "eyebrow": "Reset access",
       "title": "Forgot your password?",
       "subtitle": "Enter your email and we'll send a reset link.",
       "email": "Email",
+      "loading": "Loading...",
       "submit": "Send reset link",
       "back": "Back to sign in"
     },
