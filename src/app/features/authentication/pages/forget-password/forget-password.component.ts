@@ -1,46 +1,62 @@
-import { Component } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../../../core/services/auth.service';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
-  imports: [FormsModule, CommonModule,RouterLink],
+  imports: [FormsModule, CommonModule, RouterLink],
   templateUrl: './forget-password.component.html'
 })
 export class ForgetPasswordComponent {
 
-  email = '';
-  isLoading = false;
-  errorMessage = '';
-  successMessage = '';
+  email = signal('');
 
-  constructor(private authService: AuthService) {}
+  isLoading = signal(false);
+  errorMessage = signal('');
+  successMessage = signal('');
+
+  private authService = inject(AuthService);
 
   onSubmit(form: NgForm) {
     if (form.invalid) return;
 
-    this.isLoading = true;
-    this.errorMessage = '';
-    this.successMessage = '';
+    this.isLoading.set(true);
+    this.errorMessage.set('');
+    this.successMessage.set('');
 
-    // this.authService.forgotPassword(this.email).subscribe({
-    //   next: (res: any) => {
-    //     this.isLoading = false;
+    const payload = {
+      email: this.email(),
+      clientUri: 'http://localhost:4200/auth/reset-password'
+    };
 
-    //     console.log('FORGOT PASSWORD RESPONSE:', res);
+    this.authService.forgotPassword(payload).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          console.log('forget RESPONSE:', res);
 
-    //     this.successMessage = 'Reset link sent! Check your email.';
-    //   },
-    //   error: (err) => {
-    //     this.isLoading = false;
+          this.successMessage.set(res.message);
+          form.resetForm();
 
-    //     console.error('FORGOT PASSWORD ERROR:', err);
+          this.email.set('');
+        } else {
+          this.errorMessage.set(res.message || '• Failed to send reset link');
+        }
 
-    //     this.errorMessage = err.error?.message || 'Something went wrong';
-    //   }
-    // });
+        this.isLoading.set(false);
+      },
+
+      error: (err) => {
+        this.errorMessage.set(
+          err?.error?.message ||
+          err?.error?.errors?.[0] ||
+          '• Something went wrong. Please try again.'
+        );
+
+        this.isLoading.set(false);
+      }
+    });
   }
 }

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
@@ -10,79 +10,99 @@ import { AuthService } from '../../../../core/services/auth.service';
   imports: [FormsModule, CommonModule],
   templateUrl: './reset-password.component.html'
 })
-export class ResetPasswordComponent  {
+export class ResetPasswordComponent implements OnInit {
 
+  // ✅ Form model (keep template-driven)
   model = {
     password: '',
     confirmPassword: ''
   };
 
-  email: string | null = null;
-  token: string | null = null;
+  // ✅ Signals (state)
+  email = signal<string | null>(null);
+  token = signal<string | null>(null);
 
-  isLoading = false;
-  errorMessage = '';
-  successMessage = '';
+  isLoading = signal(false);
+  errorMessage = signal('');
+  successMessage = signal('');
 
-  constructor(
-    private authService: AuthService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
+  // ✅ Modern DI
+  private authService = inject(AuthService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
 
   ngOnInit(): void {
-    this.email = this.route.snapshot.queryParamMap.get('email');
-    this.token = this.route.snapshot.queryParamMap.get('token');
+    const email = this.route.snapshot.queryParamMap.get('email');
+    const rawToken = this.route.snapshot.queryParamMap.get('token');
 
-    if (!this.email || !this.token) {
-      this.errorMessage = 'Invalid or expired reset link.';
+    const token = rawToken
+      ? decodeURIComponent(rawToken).replace(/ /g, '+')
+      : null;
+
+    this.email.set(email);
+    this.token.set(token);
+
+    if (!email || !token) {
+      this.errorMessage.set('Invalid or expired reset link.');
     }
   }
 
   onSubmit(form: NgForm) {
     if (form.invalid) return;
 
+    const email = this.email();
+    const token = this.token();
+
+    // ✅ safer + avoids "!"
+    if (!email || !token) {
+      this.errorMessage.set('Invalid request.');
+      return;
+    }
+
     if (this.model.password !== this.model.confirmPassword) {
-      this.errorMessage = 'Passwords do not match';
+      this.errorMessage.set('Passwords do not match');
       return;
     }
 
-    if (!this.email || !this.token) {
-      this.errorMessage = 'Invalid request.';
-      return;
-    }
-
-    this.isLoading = true;
-    this.errorMessage = '';
-    this.successMessage = '';
+    this.isLoading.set(true);
+    this.errorMessage.set('');
+    this.successMessage.set('');
 
     const payload = {
-      email: this.email,
-      token: this.token,
-      newPassword: this.model.password
+      email,
+      token,
+      password: this.model.password,
+      confirmPassword: this.model.confirmPassword
     };
 
-    // this.authService.resetPassword(payload).subscribe({
-    //   next: (res: any) => {
-    //     this.isLoading = false;
+    this.authService.resetPassword(payload).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.successMessage.set(res.message);
 
-    //     console.log('RESET PASSWORD RESPONSE:', res);
+          setTimeout(() => {
+            this.router.navigate(['/auth/login']);
+          }, 2000);
+        } else {
+          this.errorMessage.set(res.message || 'Failed to reset password');
+        }
 
-    //     this.successMessage = 'Password reset successfully! Redirecting...';
+        this.isLoading.set(false);
+      },
 
-    //     // 🔥 redirect after success
-    //     setTimeout(() => {
-    //       this.router.navigate(['/auth/login']);
-    //     }, 2000);
-    //   },
-    //   error: (err) => {
-    //     this.isLoading = false;
+      error: (err) => {
+        const apiError = err?.error;
 
-    //     console.error('RESET PASSWORD ERROR:', err);
+        if (apiError?.errors?.length) {
+          this.errorMessage.set(apiError.errors.join(', '));
+        } else {
+          this.errorMessage.set(
+            apiError?.message || 'Something went wrong'
+          );
+        }
 
-    //     this.errorMessage =
-    //       err.error?.message || 'Something went wrong';
-    //   }
-    // });
+        this.isLoading.set(false);
+      }
+    });
   }
 }
