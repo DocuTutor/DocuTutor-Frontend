@@ -1,8 +1,11 @@
-import { Component, input, OnInit, signal } from '@angular/core';
-import { seedChat, suggestedPrompts } from '../../models/workspace.mock';
-import { previewLines } from '../../models/workspace.mock';
+import { Component, input, inject, signal } from '@angular/core';
+import { suggestedPrompts } from '../../models/workspace.mock';
 import { WorkspaceDocument, ChatMessage } from '../../models/workspace.models';
 import { FormsModule } from '@angular/forms';
+import { ChatService } from '../../services/chat.service';
+
+// Fixed DocumentId until API is available
+const FIXED_DOCUMENT_ID = '0a5d94d9-5082-4093-8f90-4c96526ea7b1';
 
 @Component({
   selector: 'app-chat-panel',
@@ -10,17 +13,15 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './chat-panel.component.html',
   styleUrls: ['./chat-panel.component.css']
 })
-export class ChatPanelComponent  {
+export class ChatPanelComponent {
+  private chatService = inject(ChatService);
 
-   readonly doc = input.required<WorkspaceDocument>();
-
-  readonly messages = signal<ChatMessage[]>(seedChat);
+  readonly doc = input.required<WorkspaceDocument>();
+  readonly messages = signal<ChatMessage[]>([]);
   readonly thinking = signal(false);
 
   inputValue = '';
-
   readonly prompts = suggestedPrompts;
-  readonly previewLines = previewLines;
 
   render(content: string): string {
     return content.split('\n\n').map((p, i) => `<p class="${i > 0 ? 'mt-3' : ''}">${p.replace(/\*\*(.+?)\*\*/g, '<strong>\$1</strong>')}</p>`).join('');
@@ -55,22 +56,32 @@ export class ChatPanelComponent  {
     this.inputValue = '';
     this.thinking.set(true);
 
-    setTimeout(() => {
-      this.messages.update((messages) => [
-        ...messages,
-        {
-          id: crypto.randomUUID(),
-          role: 'assistant',
-          content: `Great question. Based on **the document**: ${text.trim()} — the relevant material starts around page 14 and is explained in three short paragraphs.\n\nWould you like me to expand on any of the sub-points, or generate a quick quiz on this section?`,
-          citations: [
-            { page: 14, label: 'p.14' },
-            { page: 16, label: 'p.16' },
-          ],
-        },
-      ]);
-
-      this.thinking.set(false);
-    }, 1200);
+    this.chatService.ask(FIXED_DOCUMENT_ID, text).subscribe({
+      next: (response) => {
+        this.messages.update((messages) => [
+          ...messages,
+          {
+            id: crypto.randomUUID(),
+            role: 'assistant',
+            content: response.content,
+            citations: response.citations,
+          },
+        ]);
+        this.thinking.set(false);
+      },
+      error: (error) => {
+        console.error('Chat error:', error);
+        this.messages.update((messages) => [
+          ...messages,
+          {
+            id: crypto.randomUUID(),
+            role: 'assistant',
+            content: 'Sorry, I encountered an error while processing your request. Please try again.',
+          },
+        ]);
+        this.thinking.set(false);
+      },
+    });
   }
 }
 

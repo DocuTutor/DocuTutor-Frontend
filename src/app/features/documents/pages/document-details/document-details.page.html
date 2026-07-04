@@ -1,1 +1,21 @@
-<!-- Document Details Page Template -->
+<div class="document-details-container">
+  <!-- Document Header -->
+  <div class="document-header">
+    <h1 class="document-title">{{ documentName() }}</h1>
+    <p class="document-subtitle">Ask questions about this document using AI</p>
+  </div>
+
+  <!-- Chat Component Integration -->
+  <div class="chat-section">
+    @if (documentId()) {
+      <app-chat [documentId]="documentId()!"></app-chat>
+    } @else {
+      <div class="loading-state">
+        <p>Loading document...</p>
+      </div>
+    }
+  </div>
+
+  <!-- Additional document information can be added here -->
+  <!-- For example: document metadata, preview, download button, etc. -->
+</div>

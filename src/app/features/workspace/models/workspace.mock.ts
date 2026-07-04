@@ -15,37 +15,9 @@ export const documents: WorkspaceDocument[] = [
 ];
 
 export const suggestedPrompts = [
-  "Summarize chapter 3 in plain English",
-  "Explain back-propagation like I'm a beginner",
-  "What are the key terms I should memorize?",
-  "Give me 5 likely exam questions",
+  "Tell me about this doucment.",
+  "Summarize this document in 3 sentences.",
 ];
-
-
-export const seedChat: ChatMessage[] = [
-  {
-    id: "m1",
-    role: "assistant",
-    content:
-      "Hi! I've finished reading **Introduction to Neural Networks**. I can explain concepts, quote pages, or generate practice questions. Where would you like to start?",
-  },
-  {
-    id: "m2",
-    role: "user",
-    content: "Explain the difference between a perceptron and a multi-layer network.",
-  },
-  {
-    id: "m3",
-    role: "assistant",
-    content:
-      "A **perceptron** is the simplest neuron — a single layer that computes a weighted sum of inputs and applies an activation. It can only learn linearly-separable patterns.\n\nA **multi-layer network** stacks several layers of perceptrons with non-linear activations (like ReLU). The hidden layers let it model complex, non-linear decision boundaries — which is why it can solve XOR while a single perceptron cannot.",
-    citations: [
-      { page: 7, label: "p.7 — Perceptron model" },
-      { page: 12, label: "p.12 — Hidden layers" },
-    ],
-  },
-];
-
 
 
 export const quiz: QuizQuestion[] = [
