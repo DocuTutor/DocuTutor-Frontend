@@ -4,13 +4,10 @@
 
     <nav class="hidden items-center gap-8 md:flex">
       @for (link of links; track link.fragment) {
-        <a
-          [routerLink]="['/']"
-          [fragment]="link.fragment"
-          class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-        >
-          {{ link.labelKey | translate }}
-        </a>
+      <a [routerLink]="['/']" [fragment]="link.fragment"
+        class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+        {{ link.labelKey | translate }}
+      </a>
       }
     </nav>
 
@@ -18,31 +15,23 @@
       <app-theme-toggle />
       <app-language-switcher />
 
-      <a
-        routerLink="/auth/login"
-        class="hidden rounded-full px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted sm:inline-flex"
-      >
+      @if (isAuthenticated()) {
+      <app-logout />
+      } @else {
+      <a routerLink="/auth/login"
+        class="hidden rounded-full px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted sm:inline-flex">
         {{ 'common.logIn' | translate }}
       </a>
 
-      <a
-        routerLink="/auth/register"
-        class="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-glow"
-      >
+      <a routerLink="/auth/register"
+        class="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-glow">
         {{ 'common.getStarted' | translate }}
-        <svg
-          class="h-3.5 w-3.5 navbar-cta-arrow"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
+        <svg class="h-3.5 w-3.5 navbar-cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M5 12h14M13 5l7 7-7 7" />
         </svg>
       </a>
+      }
     </div>
   </div>
 </header>

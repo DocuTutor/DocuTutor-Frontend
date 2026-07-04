@@ -1,6 +1,5 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { Router } from '@angular/router';
 import {
   BehaviorSubject,
   catchError,
@@ -18,7 +17,6 @@ const refreshedToken$ = new BehaviorSubject<string | null>(null);
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
-  const router = inject(Router);
 
   const isAuthEndpoint = AUTH_ENDPOINTS.some((endpoint) => req.url.includes(endpoint));
 
@@ -34,8 +32,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       }
 
       if (!authService.getRefreshToken()) {
-        authService.logout();
-        router.navigate(['/auth/login']);
+        authService.forceLogout();
         return throwError(() => error);
       }
 
@@ -55,6 +52,12 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       return authService.refreshToken().pipe(
         switchMap((res) => {
           isRefreshing = false;
+
+          if (!res.isSuccess) {
+            authService.forceLogout();
+            return throwError(() => error);
+          }
+
           const newToken = res.data.token;
           refreshedToken$.next(newToken);
 
@@ -62,8 +65,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
         }),
         catchError((refreshError) => {
           isRefreshing = false;
-          authService.logout();
-          router.navigate(['/auth/login']);
+          authService.forceLogout();
           return throwError(() => refreshError);
         }),
       );
