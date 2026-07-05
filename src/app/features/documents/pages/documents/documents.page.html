@@ -1,1 +1,64 @@
-<!-- Documents Page Template -->
+<div class="px-6 py-8 lg:px-10 lg:py-10">
+  <header class="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4 lg:flex lg:flex-wrap lg:items-center lg:justify-between">
+    <div class="min-w-0">
+      <div class="text-sm text-muted-foreground">{{ 'documents.eyebrow' | translate }}</div>
+      <h1 class="mt-1 truncate font-display text-3xl font-bold text-foreground sm:text-4xl">
+        {{ 'documents.title' | translate }}
+      </h1>
+      <p class="mt-1 text-sm text-muted-foreground">
+        {{ 'documents.totalCount' | translate: { count: allDocs().length } }}
+      </p>
+    </div>
+  </header>
+
+  <section class="mt-8">
+    <app-document-statistics [stats]="stats()" />
+  </section>
+
+  <section class="mt-8">
+    <app-document-toolbar
+      [search]="search()"
+      [filter]="filter()"
+      [sort]="sort()"
+      (searchChange)="onSearch($event)"
+      (filterChange)="onFilter($event)"
+      (sortChange)="onSort($event)"
+    />
+  </section>
+
+  <section class="mt-6">
+    @if (loading()) {
+      <app-loading-skeleton [count]="8" />
+    } @else if (errorKey()) {
+      <div class="rounded-3xl border border-destructive/30 bg-destructive/10 px-6 py-5 text-sm text-destructive">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <p>{{ errorKey() | translate }}</p>
+          <button
+            type="button"
+            (click)="onRetry()"
+            class="inline-flex items-center gap-2 rounded-full border border-destructive/30 bg-background px-4 py-2 font-semibold text-destructive transition-colors hover:bg-destructive/5"
+          >
+            {{ 'documents.errors.retry' | translate }}
+          </button>
+        </div>
+      </div>
+    } @else if (filtered().length === 0) {
+      <app-empty-documents />
+    } @else {
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        @for (d of paginated(); track d.id) {
+          <app-document-card [doc]="d" (action)="onCardAction($event)" />
+        }
+      </div>
+
+      <div class="mt-8">
+        <app-document-pagination
+          [page]="page()"
+          [pageSize]="pageSize"
+          [total]="filtered().length"
+          (pageChange)="page.set($event)"
+        />
+      </div>
+    }
+  </section>
+</div>

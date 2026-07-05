@@ -1,32 +1,12 @@
-<div class="w-full max-w-md mx-auto">
+<div class="my-auto mx-auto w-full max-w-sm py-12">
+  <div class="text-xs font-semibold uppercase tracking-wider text-brand">{{ 'auth.signup.eyebrow' | translate }}</div>
+  <h1 class="mt-2 font-display text-3xl font-bold leading-tight text-foreground sm:text-4xl">{{ 'auth.signup.title' | translate }}</h1>
+  <p class="mt-2 text-sm text-muted-foreground">{{ 'auth.signup.subtitle' | translate }}</p>
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="space-y-5">
 
-  <!-- Header -->
-  <div class="mb-8 text-center">
-    <h2 class="text-sm text-[color:var(--brand)] font-medium mb-2">
-      FREE FOREVER PLAN
-    </h2>
-
-    <h1 class="text-3xl font-bold mb-2">
-      Create your study space.
-    </h1>
-
-    <p class="text-gray-500 text-sm">
-      Less than 30 seconds. No credit card. No spam.
-    </p>
-  </div>
-
-  <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="space-y-5">
-
-    <div>
-      <input
-        type="text"
-        name="name"
-        [(ngModel)]="model.name"
-        required
-        placeholder="Full Name"
-        class="w-full px-4 py-3 rounded-xl border border-gray-300"
-        #nameModel="ngModel"
-      />
+    <label class="block">
+      <span class="text-sm font-medium text-foreground">{{ 'auth.signup.name' | translate }}</span>
+      <input type="text" name="name" [(ngModel)]="model.name" required placeholder="Full Name" class="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/15" #nameModel="ngModel" />
 
       @if ((nameModel.touched || registerForm.submitted) && nameModel.invalid) {
         <small class="text-red-500">
@@ -35,19 +15,11 @@
           }
         </small>
       }
-    </div>
+    </label>
 
-    <div>
-      <input
-        type="email"
-        name="email"
-        [(ngModel)]="model.email"
-        required
-        email
-        placeholder="Email"
-        class="w-full px-4 py-3 rounded-xl border border-gray-300"
-        #emailModel="ngModel"
-      />
+    <label class="block">
+      <span class="text-sm font-medium text-foreground">{{ 'auth.signup.email' | translate }}</span>
+      <input type="email" name="email" [(ngModel)]="model.email" required email placeholder="Email" class="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/15" #emailModel="ngModel"/>
 
       @if ((emailModel.touched || registerForm.submitted) && emailModel.invalid) {
         <small class="text-red-500">
@@ -59,20 +31,12 @@
           }
         </small>
       }
-    </div>
+    </label>
 
     <!-- PASSWORD -->
-    <div>
-      <input
-        type="password"
-        name="password"
-        [(ngModel)]="model.password"
-        required
-        minlength="6"
-        placeholder="Password"
-        class="w-full px-4 py-3 rounded-xl border border-gray-300"
-        #passModel="ngModel"
-      />
+    <label class="block" >
+      <span class="text-sm font-medium text-foreground">{{ 'auth.signup.password' | translate }}</span>
+      <input type="password" name="password" [(ngModel)]="model.password" required minlength="6" placeholder="Password" class="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/15" #passModel="ngModel"/>
 
       @if ((passModel.touched || registerForm.submitted)) {
         <small class="text-red-500">
@@ -99,18 +63,11 @@
 
         </small>
       }
-    </div>
+    </label>
 
-    <div>
-      <input
-        type="password"
-        name="confirmPassword"
-        [(ngModel)]="model.confirmPassword"
-        required
-        placeholder="Confirm Password"
-        class="w-full px-4 py-3 rounded-xl border border-gray-300"
-        #confirmModel="ngModel"
-      />
+    <label class="block">
+      <span class="text-sm font-medium text-foreground">{{ 'auth.signup.confirmPassword' | translate }}</span>
+      <input type="password" name="confirmPassword" [(ngModel)]="model.confirmPassword" required placeholder="Confirm Password" class="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/15" #confirmModel="ngModel" />
 
       @if ((confirmModel.touched || registerForm.submitted) && confirmModel.invalid) {
         <small class="text-red-500">
@@ -126,7 +83,7 @@
           Passwords do not match
         </small>
       }
-    </div>
+    </label>
 
     <!-- ERROR MESSAGE -->
     <!-- @if (errorMessage()) {
@@ -145,21 +102,20 @@
 
     <button
       type="submit"
-      class="w-full py-3 rounded-full bg-teal-600 text-white"
-      [disabled]="isLoading()"
+      class="block w-full rounded-full bg-foreground py-3 text-center text-sm font-semibold text-background shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-glow"
+      [disabled]="isLoading()",
+      routerLink="/dashboard"
     >
-      {{ isLoading() ? 'Creating...' : 'Create account' }}
+      {{ (isLoading() ? 'auth.signup.loading' : 'auth.signup.submit') | translate }}
     </button>
 
-    <div class="text-center text-sm text-gray-500">
-      Already has an account?
-      <a
-        routerLink="/auth/login"
-        class="text-[color:var(--brand)] hover:underline font-medium"
-      >
-        Log in
-      </a>
-    </div>
+    <p class="mt-6 text-center text-sm text-muted-foreground">
+        {{ 'auth.signup.haveAccount' | translate }} <a routerLink="/auth/login" class="font-semibold text-brand-deep hover:underline">{{ 'auth.signup.signIn' | translate }}</a>
+      </p>
+
 
   </form>
+
+
 </div>
+

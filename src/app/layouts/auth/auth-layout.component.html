@@ -12,16 +12,23 @@
   </div>
 
   <!-- RIGHT SIDE -->
-  <div class="hidden lg:flex flex-col justify-between gradient-brand text-white p-16">
-    
-    <div></div>
-
-    <p class="text-xl leading-relaxed max-w-md font-medium">
-      "DocuTutor turned my 280-page econ textbook into a tutor I can actually talk to.
-      Best $9 I spend each month."
-    </p>
-
-    <div class="text-sm opacity-80">— A student</div>
-  </div>
+      <div class="min-h-screen bg-background lg:grid lg:grid-cols-1">
+      <div class="relative hidden overflow-hidden lg:block">
+        <div class="absolute inset-0 gradient-brand"></div>
+        <div class="absolute inset-0 bg-dot opacity-25"></div>
+        <div class="relative flex h-full flex-col justify-between p-12 text-white">
+          <blockquote class="max-w-md text-2xl font-display font-semibold leading-snug">
+            {{ 'auth.quote' | translate }}
+          </blockquote>
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="font-semibold">{{ 'auth.quoteAuthor' | translate }}</div>
+              <div class="text-sm text-white/70">{{ 'auth.quoteRole' | translate }}</div>
+            </div>
+            <img src="hero-student.png" alt="" class="h-48 w-48 object-contain" />
+          </div>
+        </div>
+      </div>
+    </div>
 
 </div>

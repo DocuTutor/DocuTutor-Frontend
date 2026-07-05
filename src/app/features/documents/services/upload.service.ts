@@ -1,13 +1,14 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
 import { filter, map, Observable, tap } from 'rxjs';
+import { API_ENDPOINTS } from '../constants/api.constants';
 import { DocumentUploadResponse } from '../interfaces/document-upload-response.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UploadService {
-  private apiUrl = '/api/Document';
+  private readonly apiUrl = API_ENDPOINTS.DOCUMENTS.BASE;
 
   uploadProgress = signal<number>(0);
 

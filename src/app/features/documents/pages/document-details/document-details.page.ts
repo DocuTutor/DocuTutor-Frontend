@@ -1,7 +1,9 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ChatComponent } from '../../components/chat/chat.component';
+import { DocumentService } from '../../services/document.service';
 
 /**
  * Document Details Page
@@ -26,18 +28,24 @@ export class DocumentDetailsPage implements OnInit {
    */
   documentName = signal<string>('Document');
 
-  constructor(private route: ActivatedRoute) {}
+  private readonly route = inject(ActivatedRoute);
+  private readonly documentService = inject(DocumentService);
+  private readonly destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
-    // Get document ID from route params
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(params => {
       const id = params.get('id');
       this.documentId.set(id);
-      
-      // TODO: Load document details from your document service
-      // this.documentService.getDocument(id).subscribe(doc => {
-      //   this.documentName.set(doc.name);
-      // });
+
+      if (!id) {
+        this.documentName.set('Document');
+        return;
+      }
+
+      this.documentService.getDocument(id).subscribe({
+        next: (doc) => this.documentName.set(doc.fileName),
+        error: () => this.documentName.set('Document'),
+      });
     });
   }
 }

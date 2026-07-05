@@ -12,6 +12,7 @@ import { ForgetPasswordComponent } from './features/authentication/pages/forget-
 import { ResetPasswordComponent } from './features/authentication/pages/reset-password/reset-password.component';
 import { BillingSuccessPage } from './features/subscription/pages/billing-success/billing-success.page';
 import { BillingCancelPage } from './features/subscription/pages/billing-cancel/billing-cancel.page';
+import { DocumentsPage } from './features/documents/pages/documents/documents.page';
 
 export const routes: Routes = [
   {
@@ -40,6 +41,7 @@ export const routes: Routes = [
     { path: 'upload', component: UploadDocumentPage },
     { path: 'documents/:id', component: WorkspacePage },
     { path: 'settings', component: SettingsComponent },
+    { path: 'documents', component: DocumentsPage },
   ],
 },
  {

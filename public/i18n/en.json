@@ -20,7 +20,8 @@
     "search": "Search",
     "viewAll": "View all",
     "upgrade": "Upgrade to Pro",
-    "newDocument": "New document"
+    "newDocument": "New document",
+    "close": "Close"
   },
   "nav": {
     "product": "Product",
@@ -32,7 +33,11 @@
     "activeDocument": "Active document",
     "settings": "Settings",
     "workspace": "Workspace",
-    "plan": "Plan"
+    "plan": "Plan",
+     "primary": "Primary",
+    "mobileMenu": "Mobile menu",
+    "openMenu": "Open menu"
+
   },
   "footer": {
     "tagline": "DocuTutor turns any PDF or DOCX into a patient AI study partner — chat, quiz, and summarize, all in one calm workspace.",
@@ -46,7 +51,7 @@
     "links": {
       "features": "Features",
       "pricing": "Pricing",
-      "": "",
+      "dashboard": "Dashboard",
       "changelog": "Changelog",
       "help": "Help center",
       "guides": "Study guides",
@@ -66,28 +71,32 @@
       "subtitle": "Pick up where you left off — your documents are waiting.",
       "email": "Email",
       "password": "Password",
-      "remember": "Keep me signed in",
+      "remember": "Remember me",
       "forgot": "Forgot password?",
       "submit": "Sign in",
       "noAccount": "Don't have an account?",
-      "createOne": "Create one"
+      "createOne": "Create an account",
+      "loading": "Loading..."
     },
     "signup": {
       "eyebrow": "Start free",
-      "title": "Create your DocuTutor account",
+      "title": "Create your account",
       "subtitle": "3 free documents, no credit card. Upgrade when you're ready.",
       "name": "Full name",
       "email": "Email",
       "password": "Password",
+      "confirmPassword": "Confirm Password",
       "submit": "Create account",
       "haveAccount": "Already have an account?",
-      "signIn": "Sign in"
+      "signIn": "Sign in",
+      "loading": "Loading..."
     },
     "forgot": {
       "eyebrow": "Reset access",
       "title": "Forgot your password?",
       "subtitle": "Enter your email and we'll send a reset link.",
       "email": "Email",
+      "loading": "Loading...",
       "submit": "Send reset link",
       "back": "Back to sign in"
     },
@@ -350,6 +359,8 @@
     "uploadCardDesc": "Drop a PDF or DOCX — we'll have your tutor ready in under a minute.",
     "quickActions": "Quick actions",
     "recent": "Recent documents",
+    "recentEmptyTitle": "No recent documents yet",
+    "recentEmptySubtitle": "Upload a document and it will appear here once it is processed.",
     "viewAll": "View all →",
     "weekActivity": "This week's activity",
     "last7Days": "Last 7 days",
@@ -399,6 +410,66 @@
       "title": "Studying late? Run a 5-question quiz before bed — sleep cements what you just learned.",
       "button": "Quick quiz →"
     }
+  },
+   "documents": {
+    "eyebrow": "Library",
+    "title": "All documents",
+    "totalCount": "{{count}} documents in your library",
+    "upload": "Upload document",
+    "filter": "Filter",
+    "sort": "Sort",
+    "searchPlaceholder": "Search documents…",
+    "progress": "Progress",
+    "filters": {
+      "all": "All statuses",
+      "processing": "Processing",
+      "completed": "Completed",
+      "failed": "Failed"
+    },
+    "sortOpts": {
+      "recent": "Most recent",
+      "name": "Name (A–Z)",
+      "size": "Largest first"
+    },
+    "stats": {
+      "total": "Total documents",
+      "processing": "Processing",
+      "completed": "Completed",
+      "failed": "Failed"
+    },
+    "status": {
+      "processing": "Processing",
+      "completed": "Ready",
+      "failed": "Failed"
+    },
+    "features": {
+      "summary": "Summary",
+      "quiz": "Quiz",
+      "flashcards": "Flashcards"
+    },
+    "actions": {
+      "menu": "More actions",
+      "open": "Open",
+      "preview": "Preview",
+      "rename": "Rename",
+      "download": "Download",
+      "delete": "Delete"
+    },
+    "empty": {
+      "title": "No documents yet",
+      "subtitle": "Upload your first PDF or DOCX to start chatting, quizzing, and summarizing."
+    },
+    "errors": {
+      "loadFailed": "Unable to load documents right now.",
+      "retry": "Retry"
+    },
+    "pagination": {
+      "label": "Documents pagination",
+      "previous": "Previous page",
+      "next": "Next page",
+      "showing": "Showing {{from}}–{{to}} of {{total}}"
+    }
   }
+
 }
 

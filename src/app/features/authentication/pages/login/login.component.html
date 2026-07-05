@@ -1,158 +1,58 @@
-<!-- <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+<div class="my-auto mx-auto w-full max-w-sm py-12">
+  <div class="text-xs font-semibold uppercase tracking-wider text-brand">{{ 'auth.login.eyebrow' | translate }}</div>
+  <h1 class="mt-2 font-display text-3xl font-bold leading-tight text-foreground sm:text-4xl">{{ 'auth.login.title' | translate }}</h1>
+  <p class="mt-2 text-sm text-muted-foreground">{{ 'auth.login.subtitle' | translate }}</p>
+  
+  <form class="space-y-4"  #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+        <label class="block">
+          <span class="text-sm font-medium text-foreground">{{ 'auth.login.email' | translate }}</span>
+          <input type="email" placeholder="you@university.edu" name="email" [(ngModel)]="model.email" required email #emailModel="ngModel" class="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/15" />
+              @if ((emailModel.touched || loginForm.submitted) && emailModel.invalid) {
+                    <small class="text-red-500">
+                      @if (emailModel.errors?.['required']) {
+                        Email is required
+                      }
+                      @if (emailModel.errors?.['email']) {
+                        Enter a valid email
+                      }
+                    </small>
+              }
+        </label>
+        <label class="block">
+          <span class="text-sm font-medium text-foreground">{{ 'auth.login.password' | translate }}</span>
+          <input type="password" placeholder="••••••••" name="password" [(ngModel)]="model.password" required minlength="6" #passModel="ngModel" class="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/15" />
+              @if ((passModel.touched || loginForm.submitted) && passModel.invalid) {
+                  <small class="text-red-500">
+                    @if (passModel.errors?.['required']) {
+                      Password is required
+                    }
+                    @if (passModel.errors?.['minlength']) {
+                      Minimum 6 characters
+                    }
+                  </small>
+              }
+        </label>
+        <div class="flex items-center justify-between text-sm">
+          <label class="flex items-center gap-2 text-muted-foreground">
+            <input type="checkbox" class="h-4 w-4 rounded border-border text-brand-deep" /> {{ 'auth.login.remember' | translate }}
+          </label>
+          <a routerLink="/auth/forget-password" class="font-semibold text-brand-deep hover:underline" >{{ 'auth.login.forgot' | translate }}</a>
+        </div>
+        <button  type="submit" routerLink="/dashboard" [disabled]="isLoading()" class="block w-full rounded-full bg-foreground py-3 text-center text-sm font-semibold text-background shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-glow">
+          {{ (isLoading() ? 'auth.login.loading' : 'auth.login.submit') | translate }}
+        </button>
 
-  <input
-    type="email"
-    name="email"
-    [(ngModel)]="model.email"
-    required
-    email
-    class="form-control mb-2"
-    placeholder="Email"
-  />
-
-  <input
-    type="password"
-    name="password"
-    [(ngModel)]="model.password"
-    required
-    minlength="6"
-    class="form-control mb-2"
-    placeholder="Password"
-  />
-
-  <button
-    class="btn btn-primary w-100"
-    [disabled]="loginForm.invalid || isLoading"
-  >
-    {{ isLoading ? 'Loading...' : 'Login' }}
-  </button>
-
-  <div *ngIf="errorMessage" class="text-danger mt-2">
-    {{ errorMessage }}
-  </div>
-
-</form> -->
-  <div class="w-full max-w-md mx-auto">
-
-    <!-- Header -->
-    <div class="mb-8">
-      <h2 class="text-sm text-[color:var(--brand)] font-medium mb-2">
-        WELCOME BACK
-      </h2>
-
-      <h1 class="text-3xl font-bold mb-2">
-        Log in to your study room.
-      </h1>
-
-      <p class="text-gray-500 text-sm">
-        Pick up exactly where you left off.
+        <p class="mt-6 text-center text-sm text-muted-foreground">
+        {{ 'auth.login.noAccount' | translate }} <a routerLink="/auth/register" class="font-semibold text-brand-deep hover:underline">{{ 'auth.login.createOne' | translate }}</a>
       </p>
-    </div>
 
-    <!-- Form -->
-   <form
-  #loginForm="ngForm"
-  (ngSubmit)="onSubmit(loginForm)"
-  class="space-y-5"
->
-
-  <!-- Email -->
-  <div>
-    <label class="text-sm font-medium">Email</label>
-
-    <input
-      type="email"
-      name="email"
-      [(ngModel)]="model.email"
-      required
-      email
-      placeholder="you@university.edu"
-      class="mt-2 w-full px-4 py-3 rounded-xl border border-gray-300 
-             focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]"
-      #emailModel="ngModel"
-    />
-
-    @if ((emailModel.touched || loginForm.submitted) && emailModel.invalid) {
-      <small class="text-red-500">
-        @if (emailModel.errors?.['required']) {
-          Email is required
-        }
-        @if (emailModel.errors?.['email']) {
-          Enter a valid email
-        }
-      </small>
-    }
-  </div>
-
-  <!-- Password -->
-  <div>
-    <label class="text-sm font-medium">Password</label>
-
-    <input
-      type="password"
-      name="password"
-      [(ngModel)]="model.password"
-      required
-      minlength="6"
-      placeholder="••••••••"
-      class="mt-2 w-full px-4 py-3 rounded-xl border border-gray-300 
-             focus:outline-none focus:ring-2 focus:ring-[color:var(--brand)]"
-      #passModel="ngModel"
-    />
-
-    @if ((passModel.touched || loginForm.submitted) && passModel.invalid) {
-      <small class="text-red-500">
-        @if (passModel.errors?.['required']) {
-          Password is required
-        }
-        @if (passModel.errors?.['minlength']) {
-          Minimum 6 characters
-        }
-      </small>
-    }
-  </div>
-
-  <!-- Options -->
-  <div class="flex items-center justify-between text-sm">
-    <label class="flex items-center gap-2 cursor-pointer">
-      <input type="checkbox" class="accent-[color:var(--brand)]" />
-      Remember me
-    </label>
-
-    <a class="text-[color:var(--brand)] hover:underline cursor-pointer"
-      routerLink="/auth/forget-password">
-
-      Forgot password?
-    </a>
-    
-  </div>
-
-  <!-- Button -->
-  <button
-    type="submit"
-    [disabled]="isLoading()"
-    class="w-full py-3 rounded-full bg-[color:var(--brand-deep)] text-white font-medium
-           hover:opacity-90 transition disabled:opacity-50"
-  >
-    {{ isLoading() ? 'Loading...' : 'Continue to dashboard' }}
-  </button>
-<div class="flex justify-center items-center gap-2 text-sm text-gray-500">
-  <span>New to DocuTutor?</span>
-
-  <a
-    routerLink="/auth/register"
-    class="text-[color:var(--brand)] hover:underline cursor-pointer font-medium"
-  >
-    Create an account
-  </a>
-</div>
-
-  <!-- Backend Error -->
-  @if (errorMessage()) {
+      @if (errorMessage()) {
     <div class="text-red-500 text-sm text-center">
       {{ errorMessage() }}
     </div>
   }
 
+  </form>
 
-</form>
+</div>
+
