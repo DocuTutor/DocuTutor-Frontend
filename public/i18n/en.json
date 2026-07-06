@@ -104,16 +104,7 @@
     "quoteAuthor": "Maya R.",
     "quoteRole": "CS Junior · Stanford"
   },
-  "upload": {
-    "title": "Upload a document",
-    "subtitle": "PDF or DOCX, up to 50 MB. We handle the rest.",
-    "dropHere": "Drop a file here",
-    "or": "or",
-    "browse": "Browse files",
-    "processing": "Processing…",
-    "ready": "Ready",
-    "open": "Open workspace"
-  },
+
   "workspace": {
     "chat": "Chat",
     "quiz": "Quiz me",
@@ -558,6 +549,62 @@
         }
       }
     }
+  },
+  "upload": {
+    "header": {
+      "breadcrumb": "Dashboard / Upload",
+      "title": "Upload a study document",
+      "subtitle": "PDF or DOCX — up to 200 pages on the Free plan."
+    },
+
+    "drop": {
+      "title": "Drag & drop your document here",
+      "subtitle": "or browse from your computer — PDF up to 50 MB",
+      "choose": "Choose file"
+    },
+
+    "processing": {
+      "uploading": "Uploading...",
+      "processing": "Processing your document...",
+      "description": "Chunking, embedding & indexing — this may take a minute..."
+    },
+
+    "success": {
+      "title": "Your tutor is ready!",
+      "description": "has been indexed. Open the workspace to start chatting, quizzing or summarizing.",
+      "open": "Open document →",
+      "uploadAnother": "Upload another"
+    },
+
+    "error": {
+      "title": "Processing failed",
+      "retry": "Try again"
+    },
+
+    "sidebar": {
+
+      "bestResults": {
+
+        "title": "Best Results",
+
+        "tip1": "Searchable PDFs work best — scanned documents may take longer.",
+
+        "tip2": "Keep one topic per upload for sharper AI answers.",
+
+        "tip3": "Up to 200 pages on the Free plan and 500 pages on Pro."
+
+      },
+
+      "privacy": {
+
+        "title": "PRIVATE BY DEFAULT",
+
+        "description": "Your documents are encrypted, scoped to your account, and never used to train AI models."
+
+      }
+
+    }
+
   }
 
 }
