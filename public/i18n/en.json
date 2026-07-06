@@ -469,6 +469,95 @@
       "next": "Next page",
       "showing": "Showing {{from}}–{{to}} of {{total}}"
     }
+  },
+  "pricing": {
+    "hero": {
+      "badge": "Pricing",
+      "title1": "Fair pricing for",
+      "highlight": "curious minds",
+      "subtitle": "Start free. Upgrade when your study load grows. Cancel anytime with no hidden fees."
+    },
+    "common": {
+      "yes": "✓",
+      "no": "—"
+    },
+
+    "popular": "Most Popular",
+
+    "month": "/ month",
+
+    "compare": {
+      "title": "Compare Plans",
+      "free": "Free",
+      "pro": "Pro",
+      "student": "Student+",
+
+      "documents": "Documents",
+      "pages": "Pages per document",
+      "chat": "Chat with document",
+      "summary": "Smart Summary",
+      "quiz": "Quiz Generation",
+      "citations": "Page Citations",
+      "export": "Export",
+      "priority": "Priority Processing",
+      "badgeFeature": "Student Badge",
+    "values": {
+        "free": {
+          "documents": "3 / month",
+          "pages": "80",
+          "quiz": "10 / document"
+        },
+        "pro": {
+          "documents": "Unlimited",
+          "pages": "500",
+          "quiz": "Unlimited"
+        },
+        "student": {
+          "documents": "Unlimited",
+          "pages": "500",
+          "quiz": "Unlimited"
+        }
+      }},
+    "plans": {
+      "free": {
+        "name": "Free",
+        "blurb": "Get a feel for DocuTutor on a few documents each month.",
+        "cta": "Start Free",
+        "features": {
+          "documents": "3 documents per month",
+          "pages": "Up to 80 pages/document",
+          "chat": "Chat & AI Summary",
+          "quiz": "10 quiz questions/document",
+          "support": "Community Support"
+        }
+      },
+
+      "pro": {
+        "name": "Pro",
+        "blurb": "Everything you need for a productive semester.",
+        "cta": "Get Pro",
+        "features": {
+          "documents": "Unlimited documents",
+          "pages": "Up to 500 pages/document",
+          "chat": "Unlimited AI Chat",
+          "priority": "Priority Processing",
+          "export": "Export to Notion / Markdown",
+          "support": "Email Support"
+        }
+      },
+
+      "student": {
+        "name": "Student Plus",
+        "blurb": "50% discount for verified students.",
+        "cta": "Verify & Save",
+        "features": {
+          "pro": "Everything in Pro",
+          "badge": "Verified Student Badge",
+          "groups": "Study Groups (Coming Soon)",
+          "collections": "Class Collections (Coming Soon)"
+        }
+      }
+    }
   }
 
 }

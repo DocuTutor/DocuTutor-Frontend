@@ -13,6 +13,7 @@ import { ResetPasswordComponent } from './features/authentication/pages/reset-pa
 import { BillingSuccessPage } from './features/subscription/pages/billing-success/billing-success.page';
 import { BillingCancelPage } from './features/subscription/pages/billing-cancel/billing-cancel.page';
 import { DocumentsPage } from './features/documents/pages/documents/documents.page';
+import { PricingComponent } from './features/subscription/pages/pricing/pricing.component';
 
 export const routes: Routes = [
   {
@@ -23,7 +24,7 @@ export const routes: Routes = [
 },
   {
   path: 'pricing',
-  component: AppLayoutComponent,
+  component: PricingComponent,
 },
   {
   path: 'billing/success',
