@@ -17,6 +17,11 @@ export class LanguageFacade {
   readonly initialized$ = this.store.select(selectLanguageInitialized);
   readonly supported = SUPPORTED_LANGUAGES;
 
+  readonly current = this.store.selectSignal(selectCurrentLanguage);
+  readonly direction = this.store.selectSignal(selectDirection);
+  readonly isRtl = this.store.selectSignal(selectIsRtl);
+  readonly initialized = this.store.selectSignal(selectLanguageInitialized);
+
   init(): void {
     this.store.dispatch(LanguageActions.init());
   }
