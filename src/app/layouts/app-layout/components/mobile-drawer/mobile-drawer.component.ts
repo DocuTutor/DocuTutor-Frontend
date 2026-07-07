@@ -55,6 +55,7 @@ export class MobileDrawerComponent {
     if (this.open()) return 'translateX(0)';
     return this.isRtl() ? 'translateX(100%)' : 'translateX(-100%)';
   });
+  
 
   constructor() {
     effect(() => {
