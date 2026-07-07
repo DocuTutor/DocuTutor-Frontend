@@ -14,6 +14,7 @@ import { BillingSuccessPage } from './features/subscription/pages/billing-succes
 import { BillingCancelPage } from './features/subscription/pages/billing-cancel/billing-cancel.page';
 import { DocumentsPage } from './features/documents/pages/documents/documents.page';
 import { PricingComponent } from './features/subscription/pages/pricing/pricing.component';
+import { NotFoundComponent } from './features/notfound/pages/not-found.page';
 
 export const routes: Routes = [
   {
@@ -56,5 +57,10 @@ export const routes: Routes = [
       {path:'reset-password',component:ResetPasswordComponent}
 
     ]
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
+
   }
 ];
