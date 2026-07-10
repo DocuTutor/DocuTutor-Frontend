@@ -1,5 +1,7 @@
+import { PlanTier } from "./subscription.models";
+
 export interface Plan { 
-    name: string; 
+    name: PlanTier|string; 
     price: string; 
     blurb: string; 
     cta: string; 

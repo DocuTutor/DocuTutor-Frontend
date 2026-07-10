@@ -35,6 +35,7 @@ export class AppNavbarComponent {
     { labelKey: 'nav.howItWorks', fragment: 'how' },
     { labelKey: 'nav.pricing', fragment: 'pricing' },
     { labelKey: 'nav.faq', fragment: 'faq' },
+
   ];
 
   readonly isAuthenticated = this.authService.isAuthenticated;
