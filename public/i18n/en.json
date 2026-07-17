@@ -477,6 +477,12 @@
     "popular": "Most Popular",
 
     "month": "/ month",
+    "loading": "Loading plans…",
+    "loadError": "Couldn't load plans. Please try again.",
+    "retry": "Try again",
+    "redirecting": "Redirecting…",
+    "startFree": "Start Free",
+    "choosePlan": "Choose {{tier}}",
 
     "compare": {
       "title": "Compare Plans",

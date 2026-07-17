@@ -38,7 +38,7 @@
           </label>
           <a routerLink="/auth/forget-password" class="font-semibold text-brand-deep hover:underline" >{{ 'auth.login.forgot' | translate }}</a>
         </div>
-        <button  type="submit" routerLink="/dashboard" [disabled]="isLoading()" class="block w-full rounded-full bg-foreground py-3 text-center text-sm font-semibold text-background shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-glow">
+        <button  type="submit" [disabled]="isLoading()" class="block w-full rounded-full bg-foreground py-3 text-center text-sm font-semibold text-background shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-glow">
           {{ (isLoading() ? 'auth.login.loading' : 'auth.login.submit') | translate }}
         </button>
 
