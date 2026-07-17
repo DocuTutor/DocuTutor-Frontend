@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -7,11 +7,10 @@ import { LogoComponent } from '../../../../shared/components/logo-component/logo
 import { LanguageSwitcherComponent } from '../../../../shared/components/language-switcher/language-switcher.component';
 import { LogoutComponent } from '../../../../features/authentication/pages/logout.component';
 import { AuthService } from '../../../../core/services/auth.service';
+import { NavLink } from '../../models/app-layout.models';
+import { MobileDrawerComponent } from '../mobile-drawer/mobile-drawer.component';
 
-interface NavLink {
-  labelKey: string;
-  fragment: string;
-}
+
 
 @Component({
   selector: 'app-navbar',
@@ -25,6 +24,7 @@ interface NavLink {
     LogoComponent,
     LanguageSwitcherComponent,
     LogoutComponent,
+    MobileDrawerComponent,
   ],
 })
 export class AppNavbarComponent {
@@ -35,7 +35,11 @@ export class AppNavbarComponent {
     { labelKey: 'nav.howItWorks', fragment: 'how' },
     { labelKey: 'nav.pricing', fragment: 'pricing' },
     { labelKey: 'nav.faq', fragment: 'faq' },
+
   ];
 
   readonly isAuthenticated = this.authService.isAuthenticated;
+
+  readonly drawerOpen = signal(false);
+  
 }

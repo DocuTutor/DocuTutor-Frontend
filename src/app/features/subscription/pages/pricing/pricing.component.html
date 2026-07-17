@@ -1,0 +1,75 @@
+<div class="min-h-screen bg-background">
+  <app-navbar />
+  <section class="relative overflow-hidden border-b border-border">
+    <div class="absolute inset-0 -z-10 bg-grid opacity-30 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_70%)]"></div>
+    <div class="mx-auto max-w-4xl px-4 py-20 text-center sm:px-6 lg:px-8">
+      <div class="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/5 px-3 py-1 text-xs font-semibold text-brand-deep"> {{ 'pricing.hero.badge' | translate }}</div>
+      <h1 class="mt-4 font-display text-5xl font-bold leading-tight text-foreground sm:text-6xl"> {{ 'pricing.hero.title1' | translate }}
+         <span class="text-gradient"> {{ 'pricing.hero.highlight' | translate }} </span>
+      </h1>
+      <p class="mx-auto mt-5 max-w-xl text-muted-foreground"> {{ 'pricing.hero.subtitle' | translate }}</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="grid gap-6 lg:grid-cols-3">
+      @for (p of plans(); track p.name) {
+        <div class="relative flex flex-col rounded-3xl border p-7 transition-all hover:-translate-y-1" [class]="p.highlight   ? 'border-brand bg-foreground text-background shadow-glow'   : 'border-border bg-card text-foreground shadow-soft'">
+          @if (p.highlight) {
+            <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-warning px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-warning-foreground">{{ 'pricing.popular' | translate }}</span>
+          }
+          <div class="text-sm font-semibold uppercase tracking-wider opacity-70"> {{ p.name | translate }} </div>
+          <div class="mt-3 flex items-baseline gap-1">
+            <span class="font-display text-5xl font-bold"> {{ p.price }} </span>
+            <span class="text-sm opacity-70"> {{ 'pricing.month' | translate }} </span>
+          </div>
+          <p class="mt-2 text-sm" [class]="p.highlight? 'text-background/70' : 'text-muted-foreground'"> {{ p.blurb | translate }} </p>
+          <ul class="mt-6 flex-1 space-y-2 text-sm">
+            @for (feature of p.features; track feature) {
+              <li class="flex items-start gap-2">
+                <span class="mt-0.5 grid h-5 w-5 place-items-center rounded-full" [class]="p.highlight ? 'bg-brand-soft/30 text-brand-soft' : 'bg-success/15 text-success'">
+                  <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"> <polyline points="20 6 9 17 4 12"/> </svg>
+                </span>
+                {{ feature | translate }}
+              </li>
+            }
+          </ul>
+          <a routerLink="/pricing" class="mt-8 inline-flex justify-center rounded-full px-4 py-3 text-sm font-semibold transition-all hover:-translate-y-0.5" [class]="p.highlight ? 'bg-warning text-warning-foreground' : 'bg-foreground text-background'"> {{ p.cta | translate }}</a>
+        
+          <!-- <button
+          type="button"
+          (click)="choosePlan(p.name)"
+          [disabled]="checkoutLoading() === p.name"
+          class="mt-7 inline-flex justify-center rounded-full px-4 py-2.5 text-sm font-semibold transition-all hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+          [class]="p.highlight ? 'bg-warning text-warning-foreground' : 'bg-foreground text-background'"
+        >
+          @if (checkoutLoading() === p.name) {
+            {{ 'pricing.redirecting' | translate }}
+          } @else {
+            {{ 'pricing.choosePlan' | translate:{ tier: (p.cta | translate) } }}
+          }
+        </button>  -->
+        </div>
+      }
+    </div>
+
+    <div class="mt-20 overflow-hidden rounded-3xl border border-border bg-card shadow-soft">
+      <div class="grid grid-cols-4 border-b border-border bg-brand-pale/60 px-6 py-4 text-sm font-semibold text-foreground">
+        <div>{{ 'pricing.compare.title' | translate }}</div>
+        <div class="text-center">{{ 'pricing.compare.free' | translate }}</div>
+        <div class="text-center"> {{ 'pricing.compare.pro' | translate }}</div>
+        <div class="text-center"> {{ 'pricing.compare.student' | translate }}</div>
+      </div>
+
+      @for (row of matrix(); track row[0]; let i = $index) {
+        <div class="grid grid-cols-4 px-6 py-3.5 text-sm" [class]="i % 2 === 1 ? 'bg-brand-pale/20' : ''">
+          <div class="font-medium text-foreground">{{ row[0] | translate }}</div>
+          <div class="text-center text-muted-foreground"> {{ row[1] | translate }} </div>
+          <div class="text-center text-muted-foreground"> {{ row[2] | translate }} </div>
+          <div class="text-center text-muted-foreground"> {{ row[3] | translate }} </div>
+        </div>
+      }
+    </div>
+  </section>
+  <app-footer />
+</div>

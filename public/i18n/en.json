@@ -37,6 +37,7 @@
      "primary": "Primary",
     "mobileMenu": "Mobile menu",
     "openMenu": "Open menu"
+    
 
   },
   "footer": {
@@ -104,16 +105,7 @@
     "quoteAuthor": "Maya R.",
     "quoteRole": "CS Junior · Stanford"
   },
-  "upload": {
-    "title": "Upload a document",
-    "subtitle": "PDF or DOCX, up to 50 MB. We handle the rest.",
-    "dropHere": "Drop a file here",
-    "or": "or",
-    "browse": "Browse files",
-    "processing": "Processing…",
-    "ready": "Ready",
-    "open": "Open workspace"
-  },
+
   "workspace": {
     "chat": "Chat",
     "quiz": "Quiz me",
@@ -469,6 +461,156 @@
       "next": "Next page",
       "showing": "Showing {{from}}–{{to}} of {{total}}"
     }
+  },
+  "pricing": {
+    "hero": {
+      "badge": "Pricing",
+      "title1": "Fair pricing for",
+      "highlight": "curious minds",
+      "subtitle": "Start free. Upgrade when your study load grows. Cancel anytime with no hidden fees."
+    },
+    "common": {
+      "yes": "✓",
+      "no": "—"
+    },
+
+    "popular": "Most Popular",
+
+    "month": "/ month",
+
+    "compare": {
+      "title": "Compare Plans",
+      "free": "Free",
+      "pro": "Pro",
+      "student": "Student+",
+
+      "documents": "Documents",
+      "pages": "Pages per document",
+      "chat": "Chat with document",
+      "summary": "Smart Summary",
+      "quiz": "Quiz Generation",
+      "citations": "Page Citations",
+      "export": "Export",
+      "priority": "Priority Processing",
+      "badgeFeature": "Student Badge",
+    "values": {
+        "free": {
+          "documents": "3 / month",
+          "pages": "80",
+          "quiz": "10 / document"
+        },
+        "pro": {
+          "documents": "Unlimited",
+          "pages": "500",
+          "quiz": "Unlimited"
+        },
+        "student": {
+          "documents": "Unlimited",
+          "pages": "500",
+          "quiz": "Unlimited"
+        }
+      }},
+    "plans": {
+      "free": {
+        "name": "Free",
+        "blurb": "Get a feel for DocuTutor on a few documents each month.",
+        "cta": "Start Free",
+        "features": {
+          "documents": "3 documents per month",
+          "pages": "Up to 80 pages/document",
+          "chat": "Chat & AI Summary",
+          "quiz": "10 quiz questions/document",
+          "support": "Community Support"
+        }
+      },
+
+      "pro": {
+        "name": "Pro",
+        "blurb": "Everything you need for a productive semester.",
+        "cta": "Get Pro",
+        "features": {
+          "documents": "Unlimited documents",
+          "pages": "Up to 500 pages/document",
+          "chat": "Unlimited AI Chat",
+          "priority": "Priority Processing",
+          "export": "Export to Notion / Markdown",
+          "support": "Email Support"
+        }
+      },
+
+      "student": {
+        "name": "Student Plus",
+        "blurb": "50% discount for verified students.",
+        "cta": "Verify & Save",
+        "features": {
+          "pro": "Everything in Pro",
+          "badge": "Verified Student Badge",
+          "groups": "Study Groups (Coming Soon)",
+          "collections": "Class Collections (Coming Soon)"
+        }
+      }
+    }
+  },
+  "upload": {
+    "header": {
+      "breadcrumb": "Dashboard / Upload",
+      "title": "Upload a study document",
+      "subtitle": "PDF or DOCX — up to 200 pages on the Free plan."
+    },
+
+    "drop": {
+      "title": "Drag & drop your document here",
+      "subtitle": "or browse from your computer — PDF up to 50 MB",
+      "choose": "Choose file"
+    },
+
+    "processing": {
+      "uploading": "Uploading...",
+      "processing": "Processing your document...",
+      "description": "Chunking, embedding & indexing — this may take a minute..."
+    },
+
+    "success": {
+      "title": "Your tutor is ready!",
+      "description": "has been indexed. Open the workspace to start chatting, quizzing or summarizing.",
+      "open": "Open document →",
+      "uploadAnother": "Upload another"
+    },
+
+    "error": {
+      "title": "Processing failed",
+      "retry": "Try again"
+    },
+
+    "sidebar": {
+
+      "bestResults": {
+
+        "title": "Best Results",
+
+        "tip1": "Searchable PDFs work best — scanned documents may take longer.",
+
+        "tip2": "Keep one topic per upload for sharper AI answers.",
+
+        "tip3": "Up to 200 pages on the Free plan and 500 pages on Pro."
+
+      },
+
+      "privacy": {
+
+        "title": "PRIVATE BY DEFAULT",
+
+        "description": "Your documents are encrypted, scoped to your account, and never used to train AI models."
+
+      }
+
+    }
+
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "goHome": "Go home"
   }
 
 }

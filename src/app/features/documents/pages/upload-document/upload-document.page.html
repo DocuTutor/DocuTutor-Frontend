@@ -1,16 +1,16 @@
 <div class="upload-container">
   <div class="header">
-    <p>Dashboard / Upload</p>
-    <h1>Upload a study document</h1>
-    <p>PDF or DOCX — up to 200 pages on the free plan.</p>
+    <p class="breadcrumb">{{ 'upload.header.breadcrumb' | translate }}</p>
+    <h1>{{ 'upload.header.title' | translate }}</h1>
+    <p class="subtitle">{{ 'upload.header.subtitle' | translate }}</p>
   </div>
 
   <div class="upload-grid">
     <div class="main-content">
       @if (errorMessage() && status() !== 'ERROR') {
-        <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); color: #f87171; padding: 16px; border-radius: 12px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;">
+        <div class="alert alert-error">
           <span>{{ errorMessage() }}</span>
-          <button (click)="errorMessage.set(null)" style="background: none; border: none; color: #f87171; cursor: pointer; font-size: 1.2rem;">&times;</button>
+          <button type="button" (click)="errorMessage.set(null)" class="alert-close">&times;</button>
         </div>
       }
 
@@ -26,10 +26,13 @@
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5-5 5 5M12 15V5"/>
             </svg>
           </div>
-          <h2>Drag & drop your document here</h2>
-          <p>or browse from your computer — PDF up to 50 MB</p>
-          
-          <button class="btn-primary">Choose file</button>
+
+          <h2>{{ 'upload.drop.title' | translate }}</h2>
+          <p>{{ 'upload.drop.subtitle' | translate }}</p>
+
+          <button type="button" class="btn-primary">
+            {{ 'upload.drop.choose' | translate }}
+          </button>
           
           <input 
             #fileInput 
@@ -39,12 +42,12 @@
             (change)="onFileSelected($event)"
           >
           
-          <div class="recent-files" style="margin-top: 40px; display: flex; gap: 12px; justify-content: center;">
-            <div style="background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 8px; display: flex; align-items: center; gap: 8px; font-size: 0.8rem;">
-              <span style="color: #60a5fa;">📄</span> lecture-notes.pdf
+          <div class="recent-files">
+            <div class="recent-file-chip">
+              <span>📄</span> lecture-notes.pdf
             </div>
-            <div style="background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 8px; display: flex; align-items: center; gap: 8px; font-size: 0.8rem;">
-              <span style="color: #3b82f6;">📄</span> chapter-7.pdf
+            <div class="recent-file-chip">
+              <span>📄</span> chapter-7.pdf
             </div>
           </div>
         </div>
@@ -52,80 +55,87 @@
         <div class="processing-card">
           <div class="file-info">
             <div class="file-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #fff; width: 24px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
                 <polyline points="14 2 14 8 20 8"/>
               </svg>
             </div>
+
             <div class="file-details">
               <h3>{{ selectedFile()?.name }}</h3>
               <p>{{ (selectedFile()?.size || 0) / 1024 / 1024 | number:'1.1-1' }} MB</p>
             </div>
-            <div class="processing-status shimmer">
-              {{ status() === 'UPLOADING' ? 'Uploading...' : 'Processing your document...' }}
+
+            <div class="processing-status">
+              {{ (status() === 'UPLOADING' ? 'upload.processing.uploading' : 'upload.processing.processing') | translate }}
             </div>
           </div>
 
           @if (status() === 'UPLOADING') {
-            <div style="height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; margin-bottom: 40px;">
-              <div [style.width.%]="uploadProgress()" style="height: 100%; background: linear-gradient(to right, var(--brand), #4ade80); transition: width 0.3s ease;"></div>
+            <div class="progress-bar">
+              <div class="progress-fill" [style.width.%]="uploadProgress()"></div>
             </div>
           } @else {
-            <div style="display: flex; align-items: center; gap: 12px; justify-content: center; margin-bottom: 40px; color: rgba(255,255,255,0.5); font-size: 0.9rem;">
-              <div class="spinner" style="width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.1); border-top-color: var(--brand); border-radius: 50%; animation: spin 1s linear infinite;"></div>
-              Chunking, embedding & indexing — this may take a minute...
+            <div class="processing-inline">
+              <div class="spinner"></div>
+              <span>{{ 'upload.processing.description' | translate }}</span>
             </div>
           }
         </div>
       } @else if (status() === 'SUCCESS') {
-        <div class="processing-card success-container">
+        <div class="processing-card success-container fade-up">
           <div class="success-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="width: 32px; color: #fff;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
               <polyline points="20 6 9 17 4 12"/>
             </svg>
           </div>
-          <h2>Your tutor is ready!</h2>
-          <p>{{ selectedFile()?.name }} has been indexed. Open the workspace to start chatting, quizzing or summarizing.</p>
+
+          <h2>{{ 'upload.success.title' | translate }}</h2>
+          <p>{{ selectedFile()?.name }} {{ 'upload.success.description' | translate }}</p>
           
           <div class="actions">
-            <button class="btn-primary">Open document →</button>
-            <button class="btn-secondary" (click)="reset()">Upload another</button>
+            <button type="button" class="btn-primary">
+              {{ 'upload.success.open' | translate }}
+            </button>
+            <button type="button" class="btn-secondary" (click)="reset()">
+              {{ 'upload.success.uploadAnother' | translate }}
+            </button>
           </div>
         </div>
       } @else if (status() === 'ERROR') {
-        <div class="processing-card" style="border-color: rgba(239, 68, 68, 0.3);">
-          <div class="success-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="width: 32px; color: #fff;">
+        <div class="processing-card error-card">
+          <div class="error-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
               <line x1="18" y1="6" x2="6" y2="18"/>
               <line x1="6" y1="6" x2="18" y2="18"/>
             </svg>
           </div>
-          <h2>Processing failed</h2>
+
+          <h2>{{ 'upload.error.title' | translate }}</h2>
           <p>{{ errorMessage() }}</p>
           
           <div class="actions">
-            <button class="btn-primary" (click)="reset()">Try again</button>
+            <button type="button" class="btn-primary" (click)="reset()">
+              {{ 'upload.error.retry' | translate }}
+            </button>
           </div>
         </div>
       }
     </div>
 
     <div class="info-sidebar">
-
       <div class="info-card">
-        <h4>Best Results</h4>
+        <h4>{{ 'upload.sidebar.bestResults.title' | translate }}</h4>
         <ul>
-          <li>Searchable PDFs work best — scanned docs may take longer.</li>
-          <li>Keep one topic per upload for sharper answers.</li>
-          <li>Up to 200 pages on the free plan; 500 on Pro.</li>
+          <li>{{ 'upload.sidebar.bestResults.tip1' | translate }}</li>
+          <li>{{ 'upload.sidebar.bestResults.tip2' | translate }}</li>
+          <li>{{ 'upload.sidebar.bestResults.tip3' | translate }}</li>
         </ul>
       </div>
 
       <div class="privacy-card">
-        <h4>PRIVATE BY DEFAULT</h4>
-        <p style="font-size: 1rem; font-weight: 500; color: #fff; line-height: 1.5;">
-          Your documents are encrypted, scoped to your account, and never used to train models.
-        </p>
+        <h4>{{ 'upload.sidebar.privacy.title' | translate }}</h4>
+        <p>{{ 'upload.sidebar.privacy.description' | translate }}</p>
       </div>
     </div>
   </div>

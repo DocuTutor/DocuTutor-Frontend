@@ -22,12 +22,10 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class RegisterComponent {
 
-  // 🔹 Inject (modern way)
   private authService = inject(AuthService);
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);
 
-  // 🔹 Model (can stay normal with template-driven forms)
   model = {
     name: '',
     email: '',
@@ -35,7 +33,6 @@ export class RegisterComponent {
     confirmPassword: ''
   };
 
-  // 🔹 Signals (Reactive State)
   isLoading = signal(false);
   errorMessage = signal('');
   errorList = signal<string[]>([]);

@@ -2,13 +2,14 @@ import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '
 import { RouterLink } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
 import { UploadService } from '../../services/upload.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 export type UploadStatus = 'IDLE' | 'UPLOADING' | 'PROCESSING' | 'SUCCESS' | 'ERROR';
 
 @Component({
   selector: 'app-upload-document-page',
   standalone: true,
-  imports: [ DecimalPipe],
+  imports: [ DecimalPipe,TranslatePipe],
   templateUrl: './upload-document.page.html',
   styleUrl: './upload-document.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

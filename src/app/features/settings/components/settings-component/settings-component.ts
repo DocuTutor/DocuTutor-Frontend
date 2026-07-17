@@ -6,7 +6,6 @@ import { SubscriptionService } from '../../../subscription/services/subscription
   selector: 'app-settings-component',
   imports: [DatePipe],
   templateUrl: './settings-component.html',
-  styleUrl: './settings-component.css',
 })
 export class SettingsComponent implements OnInit {
 

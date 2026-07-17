@@ -42,3 +42,12 @@ export interface FaqItem {
   qKey: string;
   aKey: string;
 }
+
+export interface DrawerLink { 
+  key: string; 
+  href: string; 
+}
+export interface NavLink {
+  labelKey: string;
+  fragment: string;
+}

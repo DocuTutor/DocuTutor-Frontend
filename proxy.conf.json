@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://localhost:5008",
+    "target": "https://docututor.runasp.net",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"

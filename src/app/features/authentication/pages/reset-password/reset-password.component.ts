@@ -13,13 +13,11 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class ResetPasswordComponent implements OnInit {
 
-  // ✅ Form model (keep template-driven)
   model = {
     password: '',
     confirmPassword: ''
   };
 
-  // ✅ Signals (state)
   email = signal<string | null>(null);
   token = signal<string | null>(null);
 
@@ -27,7 +25,6 @@ export class ResetPasswordComponent implements OnInit {
   errorMessage = signal('');
   successMessage = signal('');
 
-  // ✅ Modern DI
   private authService = inject(AuthService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
@@ -54,7 +51,6 @@ export class ResetPasswordComponent implements OnInit {
     const email = this.email();
     const token = this.token();
 
-    // ✅ safer + avoids "!"
     if (!email || !token) {
       this.errorMessage.set('Invalid request.');
       return;

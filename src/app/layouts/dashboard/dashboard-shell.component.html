@@ -1,9 +1,23 @@
 <div class="min-h-screen bg-brand-pale/30">
-  <div class="mx-auto flex max-w-[1500px]">
+  <app-dashboard-header
+    class="lg:hidden"
+    [drawerOpen]="drawerOpen()"
+    (menuClicked)="toggleDrawer()"
+  />
+
+  <div class="flex min-h-[calc(100vh-4rem)] lg:min-h-screen">
     <app-dashboard-sidebar />
 
     <main class="min-w-0 flex-1">
-      <router-outlet />
+      <div class="mx-auto w-full max-w-[1240px]">
+        <router-outlet />
+      </div>
     </main>
   </div>
+
+  <app-dashboard-mobile-drawer
+    [open]="drawerOpen()"
+    [nav]="nav"
+    (closed)="closeDrawer()"
+  />
 </div>

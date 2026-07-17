@@ -45,7 +45,7 @@ export class LoginComponent {
 
           if (res.isSuccess) {
             console.log('LOGIN RESPONSE:', res);
-            this.router.navigate(['/']);
+            this.router.navigate(['/dashboard']);
           } else {
             this.errorMessage.set(res.message || 'Login failed');
           }

@@ -28,7 +28,7 @@ export class SubscriptionService {
       .pipe(tap((res) => res.isSuccess && this.currentSubscription.set(res.data)));
   }
 
-  createCheckoutSession(plan: PlanTier) {
+  createCheckoutSession(plan: PlanTier|string) {
     return this.http.post<ApiResponse<CheckoutSessionResponse>>(
       `${this.baseUrl}/checkout-session`,
       { plan },

@@ -13,6 +13,9 @@ import { ResetPasswordComponent } from './features/authentication/pages/reset-pa
 import { BillingSuccessPage } from './features/subscription/pages/billing-success/billing-success.page';
 import { BillingCancelPage } from './features/subscription/pages/billing-cancel/billing-cancel.page';
 import { DocumentsPage } from './features/documents/pages/documents/documents.page';
+import { PricingComponent } from './features/subscription/pages/pricing/pricing.component';
+import { NotFoundComponent } from './features/notfound/pages/not-found.page';
+import { authGuard } from './core/guards/auth-guard';
 
 export const routes: Routes = [
   {
@@ -23,19 +26,24 @@ export const routes: Routes = [
 },
   {
   path: 'pricing',
-  component: AppLayoutComponent,
+  component: PricingComponent,
+  canActivate: [authGuard]
 },
   {
   path: 'billing/success',
   component: BillingSuccessPage,
+  canActivate: [authGuard]
 },
   {
   path: 'billing/cancel',
   component: BillingCancelPage,
+  canActivate: [authGuard]
 },
   {
   path: 'dashboard',
   component: DashboardShellComponent,
+  canActivate: [authGuard],
+  canActivateChild: [authGuard],
   children: [
     { path: '', component: DashboardPage },
     { path: 'upload', component: UploadDocumentPage },
@@ -55,5 +63,10 @@ export const routes: Routes = [
       {path:'reset-password',component:ResetPasswordComponent}
 
     ]
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
+
   }
 ];

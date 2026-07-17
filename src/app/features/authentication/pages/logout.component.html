@@ -1,5 +1,5 @@
 <button type="button"
-    class="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-background/80 px-4 py-2 text-sm font-semibold text-foreground shadow-soft transition-all hover:-translate-y-0.5 hover:bg-muted disabled:cursor-not-allowed disabled:opacity-70"
+class="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-glow"
     [disabled]="loading()" (click)="logout()">
     @if (loading()) {
     <span>{{ 'common.loading' | translate }}</span>

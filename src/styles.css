@@ -299,3 +299,19 @@
   }
 }
 
+/* Mirror directional icons (chevrons, arrows) in RTL */
+[dir="rtl"] .rtl\:rotate-180 { transform: rotate(180deg); }
+
+/* Native-feeling Arabic typography fallback */
+html[lang="ar"] body { font-family: "Plus Jakarta Sans", "Segoe UI", "Tahoma", system-ui, sans-serif; }
+html[lang="ar"] .font-display { font-family: "Space Grotesk", "Segoe UI", "Tahoma", system-ui, sans-serif; }
+
+/* Decorative squiggle underline should flow with text direction */
+[dir="rtl"] .underline-squiggle { background-position: 0 100%; }
+
+/* Keep numbers, code, and emails LTR even inside RTL paragraphs */
+[dir="rtl"] code,
+[dir="rtl"] .ltr-numeric,
+[dir="rtl"] [data-ltr] { direction: ltr; unicode-bidi: embed; }
+
+

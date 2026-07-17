@@ -62,7 +62,9 @@ import { ResetPasswordDto } from '../../features/authentication/models/reset-pas
 export class AuthService {
 
   private readonly router = inject(Router);
-  private baseUrl = 'http://localhost:5008/api/Auth';
+  // private baseUrl = 'http://localhost:5008/api/Auth';
+  private baseUrl = 'https://docututor.runasp.net/api/Auth';
+
   readonly isAuthenticated = signal(this.hasStoredToken());
 
   private accessToken: string | null = null;
