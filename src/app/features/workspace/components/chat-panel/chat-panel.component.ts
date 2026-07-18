@@ -4,9 +4,6 @@ import { WorkspaceDocument, ChatMessage } from '../../models/workspace.models';
 import { FormsModule } from '@angular/forms';
 import { ChatService } from '../../services/chat.service';
 
-// Fixed DocumentId until API is available
-const FIXED_DOCUMENT_ID = '0a5d94d9-5082-4093-8f90-4c96526ea7b1';
-
 @Component({
   selector: 'app-chat-panel',
   imports: [FormsModule],
@@ -46,6 +43,19 @@ export class ChatPanelComponent {
       return;
     }
 
+    const documentId = this.doc().id;
+    if (!documentId) {
+      this.messages.update((messages) => [
+        ...messages,
+        {
+          id: crypto.randomUUID(),
+          role: 'assistant',
+          content: 'No document is selected yet. Please open a document before asking questions.',
+        },
+      ]);
+      return;
+    }
+
     const userMessage: ChatMessage = {
       id: crypto.randomUUID(),
       role: 'user',
@@ -56,7 +66,7 @@ export class ChatPanelComponent {
     this.inputValue = '';
     this.thinking.set(true);
 
-    this.chatService.ask(FIXED_DOCUMENT_ID, text).subscribe({
+    this.chatService.ask(documentId, text).subscribe({
       next: (response) => {
         this.messages.update((messages) => [
           ...messages,

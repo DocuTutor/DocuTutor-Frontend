@@ -30,7 +30,7 @@ export class AppFooterComponent {
       items: [
         { labelKey: 'footer.links.features', route: '/' },
         { labelKey: 'footer.links.pricing', route: '/pricing' },
-        { labelKey: 'footer.links.dashboard', route: '/app' },
+        { labelKey: 'footer.links.dashboard', route: '/dashboard' },
         { labelKey: 'footer.links.changelog', route: '/' },
       ],
     },

@@ -7,6 +7,7 @@ import { LanguageFacade } from '../../../../core/store/language/language.facade'
 import { LanguageSwitcherComponent } from '../../../../shared/components/language-switcher/language-switcher.component';
 import { LogoComponent } from '../../../../shared/components/logo-component/logo-component';
 import { ThemeToggleComponent } from '../../../../shared/components/theme-toggle/theme-toggle';
+import { AuthService } from '../../../../core/services/auth.service';
 
 export interface DashboardNavItem {
   to: string;
@@ -24,11 +25,41 @@ export interface DashboardNavItem {
 })
 export class DashboardMobileDrawerComponent {
   private readonly languageFacade = inject(LanguageFacade);
+  private readonly authService = inject(AuthService);
   readonly open = input.required<boolean>();
   readonly nav = input.required<DashboardNavItem[]>();
   readonly closed = output<void>();
   @ViewChild('panel') panel?: ElementRef<HTMLElement>;
   readonly isRtl = this.languageFacade.isRtl;
+
+  private readonly user = this.authService.getUser();
+  readonly userName: string = this.user?.name?.trim() || 'User';
+  readonly userEmail: string = this.decodeEmailFromToken(this.authService.getAccessToken());
+  readonly userInitials: string = this.computeInitials(this.userName);
+
+  private computeInitials(name: string): string {
+    const parts = name.trim().split(/\s+/).filter(Boolean);
+    if (parts.length === 0) return 'U';
+    if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
+    return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase();
+  }
+
+  private decodeEmailFromToken(token: string | null): string {
+    if (!token) return '';
+    const segments = token.split('.');
+    if (segments.length < 2) return '';
+    try {
+      let payload = segments[1].replace(/-/g, '+').replace(/_/g, '/');
+      while (payload.length % 4) payload += '=';
+      const claims = JSON.parse(atob(payload)) as Record<string, unknown>;
+      const email =
+        claims['email'] ??
+        claims['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'];
+      return typeof email === 'string' ? email : '';
+    } catch {
+      return '';
+    }
+  }
 
   readonly transform = computed(() => {
   if (this.open()) {
