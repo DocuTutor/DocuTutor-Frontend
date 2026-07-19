@@ -6,7 +6,7 @@
 
     <label class="block">
       <span class="text-sm font-medium text-foreground">{{ 'auth.signup.name' | translate }}</span>
-      <input type="text" name="name" [(ngModel)]="model.name" required placeholder="Full Name" class="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/15" #nameModel="ngModel" />
+      <input type="text" name="name" [(ngModel)]="model.name" required  class="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/15" #nameModel="ngModel" />
 
       @if ((nameModel.touched || registerForm.submitted) && nameModel.invalid) {
         <small class="text-red-500">
@@ -19,7 +19,7 @@
 
     <label class="block">
       <span class="text-sm font-medium text-foreground">{{ 'auth.signup.email' | translate }}</span>
-      <input type="email" name="email" [(ngModel)]="model.email" required email placeholder="Email" class="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/15" #emailModel="ngModel"/>
+      <input type="email" name="email" [(ngModel)]="model.email" required email  class="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/15" #emailModel="ngModel"/>
 
       @if ((emailModel.touched || registerForm.submitted) && emailModel.invalid) {
         <small class="text-red-500">
@@ -35,7 +35,7 @@
 
     <label class="block" >
       <span class="text-sm font-medium text-foreground">{{ 'auth.signup.password' | translate }}</span>
-      <input type="password" name="password" [(ngModel)]="model.password" required minlength="6" placeholder="Password" class="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/15" #passModel="ngModel"/>
+      <input type="password" name="password" [(ngModel)]="model.password" required minlength="6" class="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/15" #passModel="ngModel"/>
 
       @if ((passModel.touched || registerForm.submitted)) {
         <small class="text-red-500">
@@ -66,7 +66,7 @@
 
     <label class="block">
       <span class="text-sm font-medium text-foreground">{{ 'auth.signup.confirmPassword' | translate }}</span>
-      <input type="password" name="confirmPassword" [(ngModel)]="model.confirmPassword" required placeholder="Confirm Password" class="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/15" #confirmModel="ngModel" />
+      <input type="password" name="confirmPassword" [(ngModel)]="model.confirmPassword" required  class="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/15" #confirmModel="ngModel" />
 
       @if ((confirmModel.touched || registerForm.submitted) && confirmModel.invalid) {
         <small class="text-red-500">

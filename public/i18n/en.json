@@ -127,7 +127,17 @@
   },
   "settings": {
     "title": "Settings",
-    "profile": "Profile",
+    "profile": {
+      "title": "Profile",
+      "subtitle": "How you appear inside DocuTutor.",
+      "changeAvatar": "Change avatar",
+      "saveChanges": "Save changes",
+      "fields": {
+        "firstName": "First name",
+        "lastName": "Last name",
+        "email": "Email"
+      }
+    },
     "appearance": "Appearance",
     "language": "Language & region",
     "billing": "Billing",
@@ -381,7 +391,7 @@
     "quickActionItems": {
       "continueChat": "Continue last chat",
       "takeQuiz": "Take a 5-question quiz",
-      "resummarize": "Re-summarize neural-nets.pdf"
+      "resummarize": "Re-summarize nets.pdf"
     },
     "documentDates": {
       "twoHoursAgo": "2h ago",

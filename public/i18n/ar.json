@@ -124,7 +124,17 @@
   },
   "settings": {
     "title": "الإعدادات",
-    "profile": "الملف الشخصي",
+    "profile": {
+      "title": "الملف الشخصي",
+      "subtitle": "كيف تظهر داخل DocuTutor.",
+      "changeAvatar": "تغيير الصورة",
+      "saveChanges": "حفظ التغييرات",
+      "fields": {
+        "firstName": "الاسم الأول",
+        "lastName": "اسم العائلة",
+        "email": "البريد الإلكتروني"
+      }
+    },
     "appearance": "المظهر",
     "language": "اللغة والمنطقة",
     "billing": "الفوترة",
@@ -380,7 +390,7 @@
     "quickActionItems": {
       "continueChat": "تابع آخر محادثة",
       "takeQuiz": "ابدأ اختبارًا من 5 أسئلة",
-      "resummarize": "أعد تلخيص neural-nets.pdf"
+      "resummarize": "أعد تلخيص"
     },
     "documentDates": {
       "twoHoursAgo": "منذ ساعتين",

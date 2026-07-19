@@ -15,28 +15,75 @@
 
         <div class="space-y-6">
           @if (tab() === "profile") {
-            <section class="rounded-3xl border border-border bg-card p-6 shadow-soft">
-              <div class="font-display text-xl font-semibold text-foreground">Profile</div>
-              <p class="mt-1 text-sm text-muted-foreground">How you appear inside DocuTutor.</p>
-              <div class="mt-6 space-y-4">
-                <div class="flex items-center gap-4">
-                  <span class="grid h-16 w-16 place-items-center rounded-full bg-brand-soft font-bold text-brand-deep text-xl">MR</span>
-                  <button class="rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold hover:bg-muted">Change avatar</button>
-                </div>
-                <div class="grid gap-4 sm:grid-cols-2">
-                  @for (f of fields; track f.label) {
-                    <label class="block">
-                      <span class="text-sm font-medium text-foreground">{{ f.label }}</span>
-                      <input [value]="f.value" class="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-2.5 text-sm outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/15" />
-                    </label>
-                  }
-                </div>
-                <div class="flex justify-end">
-                  <button class="rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background hover:-translate-y-0.5 transition-all">Save changes</button>
-                </div>
-              </div>
-            </section>
-          }
+  <section class="rounded-3xl border border-border bg-card p-6 shadow-soft">
+    <div class="font-display text-xl font-semibold text-foreground">
+      {{ 'settings.profile.title' | translate }}
+    </div>
+
+    <p class="mt-1 text-sm text-muted-foreground">
+      {{ 'settings.profile.subtitle' | translate }}
+    </p>
+
+    <div class="mt-6 space-y-4">
+      <div class="flex items-center gap-4">
+        <span class="grid h-16 w-16 place-items-center rounded-full bg-brand-soft text-xl font-bold text-brand-deep">
+          {{ userInitials }}
+        </span>
+
+        <button
+          type="button"
+          class="rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold hover:bg-muted"
+        >
+          {{ 'settings.profile.changeAvatar' | translate }}
+        </button>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        <label class="block">
+          <span class="text-sm font-medium text-foreground">
+            {{ 'settings.profile.fields.firstName' | translate }}
+          </span>
+          <input
+            [value]="firstName"
+            readonly
+            class="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-2.5 text-sm outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/15"
+          />
+        </label>
+
+        <label class="block">
+          <span class="text-sm font-medium text-foreground">
+            {{ 'settings.profile.fields.lastName' | translate }}
+          </span>
+          <input
+            [value]="lastName"
+            readonly
+            class="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-2.5 text-sm outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/15"
+          />
+        </label>
+
+        <label class="block sm:col-span-2">
+          <span class="text-sm font-medium text-foreground">
+            {{ 'settings.profile.fields.email' | translate }}
+          </span>
+          <input
+            [value]="userEmail"
+            readonly
+            class="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-2.5 text-sm outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/15"
+          />
+        </label>
+      </div>
+
+      <div class="flex justify-end">
+        <button
+          type="button"
+          class="rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition-all hover:-translate-y-0.5"
+        >
+          {{ 'settings.profile.saveChanges' | translate }}
+        </button>
+      </div>
+    </div>
+  </section>
+}
 
           @if (tab() === "billing") {
             <section class="rounded-3xl border border-border bg-card p-6 shadow-soft">

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLinkActive, RouterLink } from '@angular/router';
 import { LogoComponent } from "../../../../shared/components/logo-component/logo-component";
@@ -7,6 +7,8 @@ import { LanguageSwitcherComponent } from "../../../../shared/components/languag
 import { TranslatePipe } from '@ngx-translate/core';
 import { DashboardMobileDrawerComponent } from '../dashboard-mobile-drawer/dashboard-mobile-drawer.component';
 import { AuthService } from '../../../../core/services/auth.service';
+import { DocumentService } from '../../../../features/documents/services/document.service';
+import { SubscriptionService } from '../../../../features/subscription/services/subscription.service';
 export interface NavItem {
   to: string;
   label: string;
@@ -36,6 +38,45 @@ export class DashboardSidebarComponent {
   readonly userName: string = this.user?.name?.trim() || 'User';
   readonly userEmail: string = this.decodeEmailFromToken(this.authService.getAccessToken());
   readonly userInitials: string = this.computeInitials(this.userName);
+
+  planName: string = 'Free';
+  usedDocs: number = 0;
+  totalDocs: number | string = 5;
+  usagePercent: number = 0;
+  isFreePlan: boolean = true;
+
+  private readonly subscriptionService = inject(SubscriptionService);
+  private readonly documentService = inject(DocumentService);
+
+  constructor() {
+    effect(() => {
+      const sub = this.subscriptionService.currentSubscription();
+      this.planName = sub?.plan ?? 'Free';
+      this.isFreePlan = this.planName === 'Free';
+
+      if (this.isFreePlan) {
+        this.totalDocs = 5;
+      } else {
+        this.totalDocs = 'Unlimited';
+      }
+
+      this.updateUsagePercent();
+    });
+
+    this.documentService.getUserDocuments().subscribe((docs) => {
+      this.usedDocs = Array.isArray(docs) ? docs.length : 0;
+      this.updateUsagePercent();
+    });
+  }
+
+  private updateUsagePercent(): void {
+    if (this.isFreePlan) {
+      this.usagePercent = Math.min(100, Math.round((this.usedDocs / 5) * 100));
+      return;
+    }
+
+    this.usagePercent = Math.min(100, Math.round((this.usedDocs / 100) * 100));
+  }
 
   private computeInitials(name: string): string {
     const parts = name.trim().split(/\s+/).filter(Boolean);

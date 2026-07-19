@@ -8,6 +8,8 @@ import { LanguageSwitcherComponent } from '../../../../shared/components/languag
 import { LogoComponent } from '../../../../shared/components/logo-component/logo-component';
 import { ThemeToggleComponent } from '../../../../shared/components/theme-toggle/theme-toggle';
 import { AuthService } from '../../../../core/services/auth.service';
+import { DocumentService } from '../../../../features/documents/services/document.service';
+import { SubscriptionService } from '../../../../features/subscription/services/subscription.service';
 
 export interface DashboardNavItem {
   to: string;
@@ -36,6 +38,15 @@ export class DashboardMobileDrawerComponent {
   readonly userName: string = this.user?.name?.trim() || 'User';
   readonly userEmail: string = this.decodeEmailFromToken(this.authService.getAccessToken());
   readonly userInitials: string = this.computeInitials(this.userName);
+
+  // Plan / usage state
+  planName: string = 'Free';
+  usedDocs: number = 0;
+  totalDocs: number | string = 5;
+  usagePercent: number = 0;
+
+  private readonly subscriptionService = inject(SubscriptionService);
+  private readonly documentService = inject(DocumentService);
 
   private computeInitials(name: string): string {
     const parts = name.trim().split(/\s+/).filter(Boolean);
@@ -76,7 +87,35 @@ export class DashboardMobileDrawerComponent {
         queueMicrotask(() => this.panel?.nativeElement.focus());
       }
     });
+
+        // react to subscription changes
+    effect(() => {
+      const sub = this.subscriptionService.currentSubscription();
+      this.planName = sub?.plan ?? 'Free';
+      if (sub?.plan === 'Free' || !sub) {
+        this.totalDocs = 5;
+      } else {
+        this.totalDocs = 'Unlimited';
+      }
+      this.updateUsagePercent();
+    });
+
+    // keep used docs up to date
+    this.documentService.getUserDocuments().subscribe((docs) => {
+      this.usedDocs = Array.isArray(docs) ? docs.length : 0;
+      this.updateUsagePercent();
+    });
   }
+
+  private updateUsagePercent(): void {
+    if (typeof this.totalDocs === 'number' && this.totalDocs > 0) {
+      this.usagePercent = Math.min(100, Math.round((this.usedDocs / this.totalDocs) * 100));
+    } else {
+      this.usagePercent = this.usedDocs > 0 ? 100 : 0;
+    }
+  }
+
+  
   requestClose(): void {
     this.closed.emit();
   }

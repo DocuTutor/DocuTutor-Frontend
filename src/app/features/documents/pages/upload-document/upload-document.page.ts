@@ -9,7 +9,7 @@ export type UploadStatus = 'IDLE' | 'UPLOADING' | 'PROCESSING' | 'SUCCESS' | 'ER
 @Component({
   selector: 'app-upload-document-page',
   standalone: true,
-  imports: [ DecimalPipe,TranslatePipe],
+  imports: [DecimalPipe, TranslatePipe, RouterLink],
   templateUrl: './upload-document.page.html',
   styleUrl: './upload-document.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -112,6 +112,7 @@ export class UploadDocumentPage {
     this.selectedFile.set(null);
     this.errorMessage.set(null);
   }
+  
 }
 
 
