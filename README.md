@@ -1,59 +1,121 @@
 # DocuTutor
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.11.
+DocuTutor is a learning assistant web application built with Angular 21 for the frontend. It is designed to work with a .NET 10 backend, and it integrates AI-powered document understanding with subscription billing through Stripe.
 
-## Development server
+## What this project does
 
-To start a local development server, run:
+DocuTutor helps users:
 
-```bash
-ng serve
+- Sign in, sign up, reset passwords, and manage account access.
+- Upload documents and view them in a personal workspace.
+- Ask AI questions about a document and receive answers with citations.
+- Review quick summaries and quiz-style interactions for fast learning.
+- Choose a subscription plan and complete payment through Stripe.
+
+The frontend is the main repository here, and it calls a backend API hosted at `https://docututor.runasp.net/api` in development mode.
+
+## Main features
+
+- **Authentication:** login, register, forgot password, reset password, verify email, and auth guard protection.
+- **Document management:** upload documents, list files, open document details, and work with document-specific AI chat.
+- **AI workspace:** chat, summary, and quiz panels for each document.
+- **Subscription flow:** pricing page, Stripe checkout session creation, customer portal support, and billing result pages.
+- **Localization:** multi-language support with NgRx-managed language state.
+- **Theming and responsiveness:** light/dark theme switch and responsive layout for desktop and mobile.
+
+## Project structure
+
+The project follows a scalable **Feature-Based Architecture** inspired by enterprise Angular applications.
+
+```text
+src/app
+│
+├── core
+│   ├── services
+│   ├── guards
+│   ├── interceptors
+│   ├── infrastructure
+│   ├── store
+│   ├── constants
+│   ├── models
+│   ├── types
+│   └── utils
+│
+├── shared
+│   ├── components
+│   ├── directives
+│   ├── pipes
+│   ├── validators
+│   ├── animations
+│   ├── interfaces
+│   └── types
+│
+├── layouts
+│   ├── app-layout
+│   ├── auth-layout
+│   └── dashboard-layout
+│
+├── features
+    ├── authentication
+    ├── dashboard
+    ├── documents
+    ├── workspace
+    ├── subscription
+    └── settings
+
+
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+The architecture keeps business logic isolated inside each feature while reusable functionality lives inside **Core** and **Shared**.
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+The app is organized into clear feature areas:
 
-```bash
-ng generate component component-name
-```
+- `src/app/app.ts`, `app.html`, `app.css`, `app.routes.ts`
+  - The root application shell and routing setup.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- `src/app/core`
+  - Shared services, guards, interceptors, language/theme helpers, and authentication state. Language state is managed with NgRx and the app supports localization.
 
-```bash
-ng generate --help
-```
+- `src/app/layouts`
+  - Layout components for the public app, auth pages, and dashboard pages.
 
-## Building
+- `src/app/features/authentication`
+  - All authentication pages, request models, and auth services.
 
-To build the project run:
+- `src/app/features/documents`
+  - Document upload/list/detail pages, document APIs, chat logic, and upload services.
 
-```bash
-ng build
-```
+- `src/app/features/workspace`
+  - Workspace page with chat, summary, and quiz panels for loaded documents.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- `src/app/features/subscription`
+  - Pricing, billing success/cancel pages, and Stripe-backed subscription services.
 
-## Running unit tests
+- `src/app/shared`
+  - Reusable UI pieces like buttons, cards, inputs, badges, theme toggle, language switcher, icons, pipes, and validators.
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+- `src/environments`
+  - Environment configuration for development and production API endpoints.
 
-```bash
-ng test
-```
+## Backend and integrations
 
-## Running end-to-end tests
+This frontend is intended to work with a `.NET 10` backend API. The backend is expected to handle:
 
-For end-to-end (e2e) testing, run:
+- user authentication,
+- document upload and retrieval,
+- AI chat requests,
+- subscription plan management,
+- Stripe checkout and portal sessions.
 
-```bash
-ng e2e
-```
+The app is also designed for AI flow integration. The AI service can be deployed through a Hugging Face-hosted workflow or a similar AI pipeline, with the backend forwarding chat requests to that flow.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Tech stack
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Angular 21
+- TypeScript
+- Tailwind CSS
+- NgRx (for language state)
+- .NET 10 backend (API)
+- Hugging Face AI flow integration
+- Stripe subscription billing
